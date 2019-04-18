@@ -10,6 +10,8 @@ import sgaa.client.estructures.UserSession;
 import sgaa.client.interfaces.RegistrationPanel.RegistrationDialog;
 import sgaa.client.interfaces.SearchScrollPets.*;
 import sgaa.client.interfaces.UserOptions.MainPanelOptionsUser;
+import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dto.PetDTO;
 
 import javax.swing.JFrame;
 
@@ -57,9 +59,12 @@ public class MainWindows extends JFrame {
 	{
 		userSession = pUserSession;
 		
-		InfoPagePet[]  fe = new InfoPagePet[1];
-		fe[0] = new InfoPagePet(3, 3, 3, "Rojo", "Firulais", "Calle 9-1", "Es un perrito");
-		mainPanelPets = new MainPanelPets(fe);
+		StackArray<PetDTO> pets = generalController.getPet().findAll();
+		mainPanelPets = new MainPanelPets(pets);
+		for(int i = 0; i < pets.length(); i++)
+		{
+			pets.getObject(i).getColor();
+		}
 		add(mainPanelPets, BorderLayout.CENTER);
 		
 		MainPanelOptionsUser er = new MainPanelOptionsUser(this);

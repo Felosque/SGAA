@@ -68,11 +68,11 @@ public class MainPanelOptionsUser extends JPanel {
 		panelWest.setBackground(Colors.PRIMARY_COLOR);
 		
 		panelWest.add(new JButton("Mis mascotas"));
-		panelWest.add(new JButton("Configuraci�n"));
+		panelWest.add(new JButton("Configuración"));
 		panelWest.add(new JButton("Buscar mascota"));
-		panelWest.add(new JButton("Cerrar secci�n"));
-		panelWest.add(new JButton("Opci�n 1"));
-		panelWest.add(new JButton("Opci�n 2"));
+		panelWest.add(new JButton("Cerrar sección"));
+		panelWest.add(new JButton("Opción 1"));
+		panelWest.add(new JButton("Opción 2"));
 		
 		add(panelWest);
 		

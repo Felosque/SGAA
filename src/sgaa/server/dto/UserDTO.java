@@ -159,4 +159,10 @@ public class UserDTO implements Crud{
 		return "SELECT mail, password, name, address, phone_number, birthdate, registration_date from public.user;";
 	}
 
+
+	@Override
+	public String getSizeTable() {
+		return "SELECT count(*) from public.user";
+	}
+
 }

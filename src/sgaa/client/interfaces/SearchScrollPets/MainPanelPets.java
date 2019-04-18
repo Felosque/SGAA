@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 
 import sgaa.client.estructures.InfoPagePet;
 import sgaa.client.interfaces.Constains.Colors;
+import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dto.PetDTO;
 
 public class MainPanelPets extends JPanel implements ActionListener{
 
@@ -20,16 +22,15 @@ public class MainPanelPets extends JPanel implements ActionListener{
     private GridLayout p;
     private JButton btnAddPage;
     private JButton btnViewMore;
+    private StackArray<PetDTO> pets;
 
-    public MainPanelPets(InfoPagePet[] pInfoPagePets){
+    public MainPanelPets(StackArray<PetDTO> pInfoPagePets){
+    	pets = pInfoPagePets;
         setPreferredSize(new Dimension(1000, 100));
         setLayout(new BorderLayout());
         p = new GridLayout(1, 1);
         initComponents();
-        for(int i = 0; i < pInfoPagePets.length; i++)
-        {
-        	addPanel(new Page(pInfoPagePets[i], Colors.COLOR_BLUE1));
-        }
+        scrollPanel.add(btnPanelVisual);
     }
 
     private void initComponents(){
@@ -47,7 +48,7 @@ public class MainPanelPets extends JPanel implements ActionListener{
         btnPanelVisual2.setLayout(new GridLayout(3, 1));
         btnPanelVisual2.setBackground(Colors.SECONDARY_COLOR);
         
-        btnViewMore = new JButton("Ver más mascotas...");
+        btnViewMore = new JButton("Ver mÃ¡s mascotas...");
         btnPanelVisual.add(new JLabel(""));
         btnPanelVisual.add(new JLabel(""));
         btnPanelVisual.add(new JLabel(""));
@@ -69,13 +70,6 @@ public class MainPanelPets extends JPanel implements ActionListener{
         btnAddPage.setActionCommand("Poner");
 
         add(scrollPane, BorderLayout.CENTER);
-        //add(btnAddPage, BorderLayout.SOUTH);
-        
-        
-        /*InfoPagePet infoDefault = new InfoPagePet(1, 2, 31, "Negro", "Firulais", "Calle 9° numero 78-02", "Es negro y bonito y esto es más texto para hacer una prueba de todo lo que logra captar el texto :3");
-		Page addPage = new Page(infoDefault, Colors.COLOR_BLUE2);
-		this.p.setRows(p.getRows() + 1);
-		addPanel(addPage);*/
 		scrollPanel.revalidate();
     }
 
@@ -91,14 +85,13 @@ public class MainPanelPets extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equals("Poner")) {
-			for(int i = 0; i < 6; i++) {
-				InfoPagePet infoDefault = new InfoPagePet(1, 2, 31, "Negro", "Firulais", "Calle 9° numero 78-02", "Es negro y bonito :3");
+			for(int i = p.getRows(); i < pets.length(); i++) {
 				Page addPage = null;
 				if(i%2 == 0)
 				{
-					addPage = new Page(infoDefault, Colors.COLOR_BLUE1);
+					addPage = new Page(pets.getObject(i), Colors.COLOR_BLUE1);
 				}else {
-					addPage = new Page(infoDefault, Colors.COLOR_BLUE2);
+					addPage = new Page(pets.getObject(i), Colors.COLOR_BLUE2);
 				}
 				addPanel(addPage);
 				scrollPanel.revalidate();

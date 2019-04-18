@@ -12,6 +12,7 @@ public class PetDTO implements Crud
 	private String name;
 	private String color;
 	private String address;
+	private String description;
 	private Date birthdate;
 	private boolean state;
 	private int breed;
@@ -60,6 +61,16 @@ public class PetDTO implements Crud
 		this.id = id;
 	}
 
+	public String getDescription()
+	{
+		return this.description;
+	}
+	
+	public void setDescription(String pDescription)
+	{
+		this.description = pDescription;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -133,15 +144,15 @@ public class PetDTO implements Crud
 	@Override
 	public String insert() {
 		// TODO Auto-generated method stub
-		return "INSERT INTO public.pet(id, name, color, address, date_birth, state, breed, mail, img)"+
-				" VALUES ('"+id+"','"+name+"' , '"+color+"', '"+address+"', '"+birthdate+"', '"+state+"', '"+breed+"', '"+mail+"', '"+image+"');";
+		return "INSERT INTO public.pet(id, name, color, address, date_birth, state, breed, mail, img, description)"+
+				" VALUES ('"+id+"','"+name+"' , '"+color+"', '"+address+"', '"+birthdate+"', '"+state+"', '"+breed+"', '"+mail+"', '"+image+"', + '"+description+"');";
 	}
 
 	@Override
 	public String update() {
 		// TODO Auto-generated method stub
 		return "UPDATE public.pet SET id='"+id+"', name='"+name+"', color='"+color+"', address='"+address+"', date_birth='"+birthdate+"', state='"+state+"', breed='"+breed+"', mail='"+mail+"', img='"+image+"'" + 
-				"	WHERE id='"+id+"';";
+				"description='"+description+"'" +	"WHERE id='"+id+"';";
 	}
 
 	@Override
@@ -153,12 +164,17 @@ public class PetDTO implements Crud
 	@Override
 	public String findById() {
 		// TODO Auto-generated method stub
-		return "SELECT id, name, color, address, birthdate, state, breed, mail, img FROM public.pet WHERE id='"+id+"';";
+		return "SELECT id, name, color, address, birthdate, state, breed, mail, img, description FROM public.pet WHERE id='"+id+"';";
 	}
 
 	@Override
 	public String findAll() {
 		// TODO Auto-generated method stub
-		return "SELECT id, name, color, address, birthdate, state, breed, mail, img FROM public.pet;";
+		return "SELECT id, name, color, address, birthdate, state, breed, mail, img, description FROM public.pet;";
+	}
+	
+	public String getSizeTable()
+	{
+		return "SELECT count(*) from public.pet";
 	}
 }

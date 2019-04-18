@@ -16,13 +16,15 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import sgaa.client.estructures.InfoPagePet;
+import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dto.PetDTO;
 
 public class Page extends JPanel implements ActionListener
 {
     private JButton btnViewMore;
-    private InfoPagePet infoPagePet;
+    private PetDTO infoPagePet;
 	
-    public Page(InfoPagePet pInfoPagePet, Color pColor){
+    public Page(PetDTO pInfoPagePet, Color pColor){
     		
     	infoPagePet = pInfoPagePet;
         setPreferredSize(new Dimension(300, 300));
@@ -51,9 +53,9 @@ public class Page extends JPanel implements ActionListener
         descriptionPanel.add(new JLabel(""));
         descriptionPanel.add(new JLabel("Color: " + pInfoPagePet.getColor()));
         descriptionPanel.add(new JLabel(""));
-        descriptionPanel.add(new JLabel("Nacimiento: " + pInfoPagePet.getBirth_date()));
+        descriptionPanel.add(new JLabel("Nacimiento: " + pInfoPagePet.getBirthdate()));
         descriptionPanel.add(new JLabel(""));
-        descriptionPanel.add(new JLabel("DescipciÛn: " + pInfoPagePet.getDescription()));
+        descriptionPanel.add(new JLabel("Descipci√≥n: " + pInfoPagePet.getDescription()));
         descriptionPanel.add(new JLabel(""));
         descriptionPanel.setBackground(pColor);
         descriptionPanel.setBorder(descriptionPanelBorder); 
@@ -62,7 +64,7 @@ public class Page extends JPanel implements ActionListener
         bottonPanel.setLayout(new GridLayout(1, 3));
         bottonPanel.add(new JLabel(""));
         
-        btnViewMore = new JButton("Ver m·s...");
+        btnViewMore = new JButton("Ver m√°s...");
         btnViewMore.addActionListener(this);
         btnViewMore.setActionCommand("VIEW");
   

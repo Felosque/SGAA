@@ -6,6 +6,9 @@ import java.util.Date;
 
 import org.postgresql.util.PSQLException;
 
+import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dto.PetDTO;
+
 public class TemporalGeneralController<T> 
 {
 	private AdoptionController<T> adoption;
@@ -68,6 +71,15 @@ public class TemporalGeneralController<T>
 	{
 		TemporalGeneralController<TemporalGeneralController> obj = new TemporalGeneralController<TemporalGeneralController>();
 		
+		
+		StackArray<PetDTO> pets = obj.getPet().findAll();
+		System.out.println(pets.length());
+		for(int i = 0; i < pets.length(); i++)
+		{
+			pets.getObject(i).getId();
+		}
+
+		
 		String mail = "losanadsojadsadssdaja@gmail.com";
 		long phone =  3183769455L;
 		Calendar fechaActual = Calendar.getInstance();
@@ -75,6 +87,7 @@ public class TemporalGeneralController<T>
 		Date dateR = fechaActual.getTime();
 		System.out.println(dateR);
 		
+		/*
 		boolean fe = false;
 		fe = obj.getUser().insert(mail, "123", "Felipe", "Calle 3*23", phone, dateR, dateR);
 		System.out.println(fe);
@@ -87,7 +100,7 @@ public class TemporalGeneralController<T>
 		}
 		
 		//System.out.println("¡Se registro el usuario correctamente en la base de datos!");
-		
+		*/
 		
 		//System.out.println(obj.getUser().findById(mail).getName());
 		//System.out.println(obj.getUser().findById(mail).getPassword());

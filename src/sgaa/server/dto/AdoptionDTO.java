@@ -96,4 +96,10 @@ public class AdoptionDTO implements Crud{
 		return "SELECT id, mail, id_pet, transaction_date FROM public.adoption_tab;";
 	}
 
+
+	@Override
+	public String getSizeTable() {
+		return "SELECT count(*) from public.adoption_tab";
+	}
+
 }

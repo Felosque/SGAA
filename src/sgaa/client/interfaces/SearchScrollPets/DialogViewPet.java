@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import sgaa.client.estructures.InfoPagePet;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
+import sgaa.server.dto.PetDTO;
 
 import java.awt.TextArea;
 import javax.swing.JLabel;
@@ -25,7 +26,7 @@ public class DialogViewPet extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DialogViewPet( InfoPagePet pInfoPagePet) {
+	public DialogViewPet( PetDTO pInfoPagePet) {
 		getContentPane().setBackground(Colors.COLOR_BLUE1);
 		setBounds(100, 100, 747, 511);
 		getContentPane().setLayout(null);
@@ -45,7 +46,7 @@ public class DialogViewPet extends JDialog {
 		getContentPane().add(lblRaza);
 		
 		TextField txtRaza = new TextField();
-		txtRaza.setText( String.valueOf(pInfoPagePet.getRaza()));
+		txtRaza.setText( String.valueOf(pInfoPagePet.getBreed()));
 		txtRaza.setEditable(false);
 		txtRaza.setBounds(484, 102, 167, 20);
 		getContentPane().add(txtRaza);
@@ -69,7 +70,7 @@ public class DialogViewPet extends JDialog {
 		getContentPane().add(lblLugarDeAdquisicin);
 		
 		TextField txtPlace = new TextField();
-		txtPlace.setText( pInfoPagePet.getAcquisition_place());
+		txtPlace.setText( pInfoPagePet.getAddress());
 		txtPlace.setEditable(false);
 		txtPlace.setBounds(484, 154, 167, 20);
 		getContentPane().add(txtPlace);
