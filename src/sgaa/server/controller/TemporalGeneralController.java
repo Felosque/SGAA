@@ -6,7 +6,7 @@ import java.util.Date;
 
 import org.postgresql.util.PSQLException;
 
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.PetDTO;
 
 public class TemporalGeneralController<T> 
@@ -69,23 +69,17 @@ public class TemporalGeneralController<T>
 	//TODO
 	public static void main(String[] args) 
 	{
-		TemporalGeneralController<TemporalGeneralController> obj = new TemporalGeneralController<TemporalGeneralController>();
+		TemporalGeneralController<TemporalGeneralController> obj = new TemporalGeneralController<TemporalGeneralController>();		
 		
-		
-		StackArray<PetDTO> pets = obj.getPet().findAll();
-		System.out.println(pets.length());
-		for(int i = 0; i < pets.length(); i++)
+		IStackArray<PetDTO> pets = obj.getPet().findAll();
+		System.out.println(pets.size());
+		for(int i = 0; i < pets.size(); i++)
 		{
-			pets.getObject(i).getId();
+			System.out.println(pets.get(i).getColor());
+			System.out.println(pets.get(i).getMail());
 		}
-
 		
-		String mail = "losanadsojadsadssdaja@gmail.com";
-		long phone =  3183769455L;
-		Calendar fechaActual = Calendar.getInstance();
-		fechaActual.set(2019, 01-1, 8);
-		Date dateR = fechaActual.getTime();
-		System.out.println(dateR);
+		
 		
 		/*
 		boolean fe = false;

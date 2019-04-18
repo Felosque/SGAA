@@ -1,7 +1,7 @@
 package sgaa.server.controller;
 
 import sgaa.server.dao.BreedDAO;
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.BreedDTO;
 
 public class BreedController<T>
@@ -39,7 +39,7 @@ public class BreedController<T>
 		return (BreedDTO) dao.findById(dato);
 	}
 	
-	public StackArray<BreedDTO>findAll()
+	public IStackArray<BreedDTO>findAll()
 	{
 		BreedDTO dato = new BreedDTO();
 		return dao.findAll(dato);

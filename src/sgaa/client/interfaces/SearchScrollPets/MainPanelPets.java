@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 
 import sgaa.client.estructures.InfoPagePet;
 import sgaa.client.interfaces.Constains.Colors;
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.PetDTO;
 
 public class MainPanelPets extends JPanel implements ActionListener{
@@ -22,15 +22,21 @@ public class MainPanelPets extends JPanel implements ActionListener{
     private GridLayout p;
     private JButton btnAddPage;
     private JButton btnViewMore;
-    private StackArray<PetDTO> pets;
+    private IStackArray<PetDTO> pets;
 
-    public MainPanelPets(StackArray<PetDTO> pInfoPagePets){
+    public MainPanelPets(IStackArray<PetDTO> pInfoPagePets){
     	pets = pInfoPagePets;
+    	
+    	for(int i =0; i < pInfoPagePets.size(); i++)
+    	{
+    		pInfoPagePets.get(i).getDescription();
+    	}
         setPreferredSize(new Dimension(1000, 100));
         setLayout(new BorderLayout());
         p = new GridLayout(1, 1);
         initComponents();
-        scrollPanel.add(btnPanelVisual);
+        Page pe = new Page(pets.get(0), Colors.COLOR_BLUE1);
+        addPanel(pe);
     }
 
     private void initComponents(){
@@ -85,13 +91,13 @@ public class MainPanelPets extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equals("Poner")) {
-			for(int i = p.getRows(); i < pets.length(); i++) {
+			for(int i = p.getRows(); i < pets.size(); i++) {
 				Page addPage = null;
 				if(i%2 == 0)
 				{
-					addPage = new Page(pets.getObject(i), Colors.COLOR_BLUE1);
+					addPage = new Page(pets.get(i), Colors.COLOR_BLUE1);
 				}else {
-					addPage = new Page(pets.getObject(i), Colors.COLOR_BLUE2);
+					addPage = new Page(pets.get(i), Colors.COLOR_BLUE2);
 				}
 				addPanel(addPage);
 				scrollPanel.revalidate();

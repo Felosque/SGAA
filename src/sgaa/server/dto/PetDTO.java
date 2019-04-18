@@ -13,7 +13,7 @@ public class PetDTO implements Crud
 	private String color;
 	private String address;
 	private String description;
-	private Date birthdate;
+	private java.util.Date birthdate;
 	private boolean state;
 	private int breed;
 	private String mail;
@@ -39,7 +39,7 @@ public class PetDTO implements Crud
 	 * @param mail
 	 * @param image
 	 */
-	public PetDTO(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, ImageIcon image) 
+	public PetDTO(int id, String name, String color, String address, java.util.Date birthdate, boolean state, int breed, String mail, ImageIcon image, String pDescription) 
 	{
 		super();
 		this.id = id;
@@ -51,6 +51,7 @@ public class PetDTO implements Crud
 		this.breed = breed;
 		this.mail = mail;
 		this.image = image;
+		this.description = pDescription;
 	}
 
 	public int getId() {
@@ -95,7 +96,7 @@ public class PetDTO implements Crud
 		this.address = address;
 	}
 
-	public Date getBirthdate() {
+	public java.util.Date getBirthdate() {
 		return birthdate;
 	}
 

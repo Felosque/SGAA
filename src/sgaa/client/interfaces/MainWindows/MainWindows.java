@@ -3,6 +3,7 @@ package sgaa.client.interfaces.MainWindows;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.nio.channels.SeekableByteChannel;
+import java.util.Date;
 
 import sgaa.client.estructures.GeneralController;
 import sgaa.client.estructures.InfoPagePet;
@@ -10,9 +11,10 @@ import sgaa.client.estructures.UserSession;
 import sgaa.client.interfaces.RegistrationPanel.RegistrationDialog;
 import sgaa.client.interfaces.SearchScrollPets.*;
 import sgaa.client.interfaces.UserOptions.MainPanelOptionsUser;
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.PetDTO;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class MainWindows extends JFrame {
@@ -59,19 +61,22 @@ public class MainWindows extends JFrame {
 	{
 		userSession = pUserSession;
 		
-		StackArray<PetDTO> pets = generalController.getPet().findAll();
-		mainPanelPets = new MainPanelPets(pets);
-		for(int i = 0; i < pets.length(); i++)
-		{
-			pets.getObject(i).getColor();
-		}
-		add(mainPanelPets, BorderLayout.CENTER);
+		openOrganizationPage();
 		
 		MainPanelOptionsUser er = new MainPanelOptionsUser(this);
 		add(er, BorderLayout.SOUTH);
 		
-		panelOrganization.setVisible(true);
 		mainPanel.setVisible(false);
+	}
+	
+	public void openOrganizationPage()
+	{
+		
+		panelOrganization.setVisible(true);
+		IStackArray<PetDTO> pets = new IStackArray<PetDTO>();
+		pets.add(new PetDTO(1, "Zambrano", "Negro", "Calle 60 A-1", new Date(), true, 1, "fe@gmail.com", new ImageIcon(), "Es super bonito"));
+		pets.add(new PetDTO(1, "2mbrano", "Negro", "Calle 60 A-1", new Date(), true, 1, "fe@gmail.com", new ImageIcon(), "Es super bonito 2 jajaja"));
+		mainPanelPets = new MainPanelPets(pets);
 	}
 	
 	public static void main(String[] args) {

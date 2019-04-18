@@ -3,7 +3,7 @@ package sgaa.server.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import sgaa.server.dao.UserDAO;
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.UserDTO;
 
 
@@ -22,7 +22,7 @@ public class UserController<T> {
 		return dao.insert(dato);
 	}
 	
-	public boolean update(String mail ,String password, String name, String address, int phoneNumber, Date birthdate, Date registrationDate)
+	public boolean update(String mail ,String password, String name, String address, long phoneNumber, java.util.Date birthdate, java.util.Date registrationDate)
 	{
 		UserDTO dato = new UserDTO(mail, password, name, address, phoneNumber, birthdate, registrationDate);
 		
@@ -44,7 +44,7 @@ public class UserController<T> {
 		return (UserDTO) dao.findById(dato);
 	}
 
-	public StackArray<UserDTO>findAll()
+	public IStackArray<UserDTO> findAll()
 	{
 		UserDTO dato = new UserDTO();
 		return dao.findAll(dato);

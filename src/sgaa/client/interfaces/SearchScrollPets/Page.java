@@ -16,7 +16,6 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import sgaa.client.estructures.InfoPagePet;
-import sgaa.server.dataStructure.Stack.StackArray;
 import sgaa.server.dto.PetDTO;
 
 public class Page extends JPanel implements ActionListener

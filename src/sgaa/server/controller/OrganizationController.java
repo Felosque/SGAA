@@ -3,7 +3,7 @@ package sgaa.server.controller;
 import java.sql.Date;
 
 import sgaa.server.dao.OrganizationDAO;
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.OrganizationDTO;
 
 public class OrganizationController<T> 
@@ -41,7 +41,7 @@ public class OrganizationController<T>
 		return (OrganizationDTO) dao.findById(dato);
 	}
 
-	public StackArray<OrganizationDTO>findAll()
+	public IStackArray<OrganizationDTO>findAll()
 	{
 		OrganizationDTO dato = new OrganizationDTO();
 		return dao.findAll(dato);

@@ -5,7 +5,7 @@ import java.sql.Date;
 import javax.swing.ImageIcon;
 
 import sgaa.server.dao.PetDAO;
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.PetDTO;
 
 public class PetController<T>
@@ -17,15 +17,15 @@ public class PetController<T>
 		dao = new PetDAO<T>();
 	}
 	
-	public boolean insert(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, ImageIcon image) 
+	public boolean insert(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, ImageIcon image, String pDescription) 
 	{
-		PetDTO dato = new PetDTO(id, name, color, address, birthdate, state, breed, mail, image);
+		PetDTO dato = new PetDTO(id, name, color, address, birthdate, state, breed, mail, image, pDescription);
 		return dao.insert(dato);
 	}
 
-	public boolean update(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, ImageIcon image) 
+	public boolean update(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, ImageIcon image, String pDescription) 
 	{
-		PetDTO dato = new PetDTO(id, name, color, address, birthdate, state, breed, mail, image);
+		PetDTO dato = new PetDTO(id, name, color, address, birthdate, state, breed, mail, image, pDescription);
 		return dao.update(dato);
 	}
 
@@ -43,7 +43,7 @@ public class PetController<T>
 		return (PetDTO) dao.findById(dato);
 	}
 	
-	public StackArray<PetDTO>findAll()
+	public IStackArray<PetDTO>findAll()
 	{
 		PetDTO dato = new PetDTO();
 		return dao.findAll(dato);

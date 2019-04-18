@@ -3,7 +3,7 @@ package sgaa.server.controller;
 import java.sql.Date;
 
 import sgaa.server.dao.AdoptionDAO;
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.AdoptionDTO;
 
 
@@ -42,7 +42,7 @@ public class AdoptionController<T> {
 		return (AdoptionDTO) dao.findById(dato);
 	}
 
-	public StackArray<AdoptionDTO>findAll()
+	public IStackArray<AdoptionDTO>findAll()
 	{
 		AdoptionDTO dato = new AdoptionDTO();
 		return dao.findAll(dato);

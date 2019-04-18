@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import sgaa.server.dataStructure.Stack.StackArray;
+import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.infrastructure.Conexion;
 import sgaa.server.interfaces.Crud;
 
@@ -75,10 +75,10 @@ public class GenericDAO<T>
 		return (Crud) newObjet;
 	}
 
-	public StackArray<T> findAll(Crud dato) 
+	public IStackArray<T> findAll(Crud dato) 
 	{
 		ResultSet rs = con.getQuery(dato.findAll());
-		StackArray<T> list = getQueryList(rs);
+		IStackArray<T> list = getQueryList(rs);
 		return list;
 	}
 	
@@ -92,12 +92,12 @@ public class GenericDAO<T>
 	}
 
 	//TODO 	Se puede elminar el código comentado
-	protected StackArray<T> getQueryList(ResultSet rs) 
+	protected IStackArray<T> getQueryList(ResultSet rs) 
 	{
 		T newObjet = null;
 
 		//	List<T> dates = new LinkedList<T>();
-		StackArray<T> dates =  new StackArray<T>(daoMethods.length);
+		IStackArray<T> dates =  new IStackArray<T>();
 		try 
 		{
 			ResultSetMetaData rsMD = rs.getMetaData();
@@ -117,7 +117,7 @@ public class GenericDAO<T>
 					}
 				}
 				//	dates.add(newObjet);
-				dates.push(newObjet);
+				dates.add(newObjet);
 			}
 
 		} catch (Exception e) {
