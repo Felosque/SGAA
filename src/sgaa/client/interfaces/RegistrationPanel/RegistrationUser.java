@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -164,7 +166,8 @@ public class RegistrationUser extends JDialog implements ActionListener, WindowL
 		spMes.setBounds(202, 284, 117, 22);
 		panel.add(spMes);
 		
-		spDia = new JSpinner();
+		SpinnerModel day = new SpinnerNumberModel(1, 1, 31, 1);
+		spDia = new JSpinner(day);
 		spDia.setBounds(330, 284, 41, 20);
 		panel.add(spDia);
 
@@ -197,17 +200,24 @@ public class RegistrationUser extends JDialog implements ActionListener, WindowL
 		
 		if(e.getActionCommand().equals("REGISTRAR"))
 		{
+			//Fechas del registro
 			Calendar fechaActual = Calendar.getInstance();
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			fechaActual.set(2019, 01-1, 8);
 			Date dateR = fechaActual.getTime();	
-			fechaActual.set((int)spAno.getValue(), ServicesStructures.getMonthNumber(spMes.getValue().toString()), (int)spDia.getValue());
+			fechaActual.set((int)spAno.getValue(), ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue() + 1));
 			Date dateU = fechaActual.getTime();	
+			
+			//Resultado de la consulta al iniciar la seccion 
 			boolean result =  registrationDialog.getMainPanel().getMainWindows().getGeneralController().getUser()
 			.insert(tbxMail.getText(), ServicesStructures.viewPassword(tbxPassword.getPassword()), tbxName.getText(), tbxHouse.getText(), 
 					Long.parseLong(tbxPhone.getText()), dateU, dateR);
+			
 			if(result == true)
 			{
 				JOptionPane.showMessageDialog(this, "¡Se ha registrado correctamente el usuario, ya puede loguearse!");
+				registrationDialog.getMainPanel().mainWindowsVisible(true);
+				this.dispose();
 			}else
 			{
 				JOptionPane.showMessageDialog(this, "¡Hubo un error al registrar el usuario!\n Posiblemente ese correo ya este registrado en la base de datos.");

@@ -90,13 +90,13 @@ public class OrganizationDTO implements Crud
 	@Override
 	public String toString() {
 		return "OrganizationDTO [mail=" + mail + ", password=" + password + ", name=" + name + ", address=" + address
-				+ ", phoneNumber=" + phoneNumber + ", registationDate=" + registrationDate + "]";
+				+ ", phone_number=" + phoneNumber + ", registration_date=" + registrationDate + "]";
 	}
 
 	@Override
 	public String insert() 
 	{
-		return "INSERT INTO public.organization( mail, password, name, address, number_phone, date_registration)"+
+		return "INSERT INTO public.organization( mail, password, name, address, phone_number, registration_date)"+
 				"VALUES ('"+mail+"','"+password+"','"+name+"','"+address+"','"+phoneNumber+"','"+registrationDate+"');";
 	}
 
@@ -104,7 +104,7 @@ public class OrganizationDTO implements Crud
 	public String update() 
 	{
 		return "UPDATE public.organization SET mail='"+mail+"', password="+password+"', name='"+name+"', address='"+address+"', "
-				+ "number_phone='"+phoneNumber+"', date_registration='"+registrationDate+"' WHERE mail = '"+mail+"';";
+				+ "phone_number='"+phoneNumber+"', registration_date='"+registrationDate+"' WHERE mail = '"+mail+"';";
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class OrganizationDTO implements Crud
 	@Override
 	public String findAll() 
 	{
-		return "SELECT mail, password, name, address, number_phone, date_registration FROM public.organization;";
+		return "SELECT mail, password, name, address, phone_number, registration_date FROM public.organization;";
 	}
 
 	@Override

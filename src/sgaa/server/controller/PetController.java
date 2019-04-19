@@ -43,9 +43,9 @@ public class PetController<T>
 		return (PetDTO) dao.findById(dato);
 	}
 	
-	public IStackArray<PetDTO>findAll()
+	public IStackArray<PetDTO>findAll(String mail)
 	{
-		PetDTO dato = new PetDTO();
+		PetDTO dato = new PetDTO(0, null, null, null, new java.util.Date(), false, 0, mail, null, null);
 		return dao.findAll(dato);
 	}
 }

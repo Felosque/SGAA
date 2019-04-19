@@ -171,7 +171,7 @@ public class PetDTO implements Crud
 	@Override
 	public String findAll() {
 		// TODO Auto-generated method stub
-		return "SELECT id, name, color, address, birthdate, state, breed, mail, img, description FROM public.pet;";
+		return "SELECT id, name, color, address, birthdate, state, breed, mail, img, description FROM public.pet WHERE mail='"+mail+"';";
 	}
 	
 	public String getSizeTable()

@@ -8,11 +8,15 @@ import java.util.Date;
 import sgaa.client.estructures.GeneralController;
 import sgaa.client.estructures.InfoPagePet;
 import sgaa.client.estructures.UserSession;
+import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.RegistrationPanel.RegistrationDialog;
 import sgaa.client.interfaces.SearchScrollPets.*;
 import sgaa.client.interfaces.UserOptions.MainPanelOptionsUser;
 import sgaa.server.dataStructure.Stack.IStackArray;
+import sgaa.server.dto.OrganizationDTO;
 import sgaa.server.dto.PetDTO;
+import sgaa.server.dto.UserDTO;
+import sgga.client.interfaces.SearchScrollOrganization.MainPanelOrganizations;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,23 +33,27 @@ public class MainWindows extends JFrame {
 	
 	private UserSession userSession;
 	
+	private MainPanelOrganizations mainPanelOrganizations;
+	
 	private GeneralController<GeneralController> generalController = new GeneralController<GeneralController>();
 	
 	public MainWindows() {
 		
+		setBackground(Colors.COLOR_WHITE_1);
+		
 		titlePanel = new TitlePanel();
 		add(titlePanel, BorderLayout.NORTH);
-		
-		
+
 		panelOrganization = new PanelOrganization();
 		add(panelOrganization, BorderLayout.WEST);
 		panelOrganization.setVisible(false);
 		
 		mainPanel = new MainPanel(this);
 		add(mainPanel, BorderLayout.CENTER);
+		mainPanel.setVisible(true);
 		
 		userSession = null;
-	
+
 	}
 	
 	public GeneralController<GeneralController> getGeneralController() {
@@ -60,23 +68,34 @@ public class MainWindows extends JFrame {
 	public void activateSessionUser(UserSession pUserSession)
 	{
 		userSession = pUserSession;
-		
-		openOrganizationPage();
-		
-		MainPanelOptionsUser er = new MainPanelOptionsUser(this);
-		add(er, BorderLayout.SOUTH);
-		
 		mainPanel.setVisible(false);
+		
+		//Se crea el array de las organizaciones a mostrar
+		IStackArray<OrganizationDTO> organizations = new IStackArray<OrganizationDTO>();
+		organizations = generalController.getOrganization().findAll();
+		mainPanelOrganizations = new MainPanelOrganizations(organizations, this);
+		add(mainPanelOrganizations, BorderLayout.CENTER);
+		
+		MainPanelOptionsUser mainPanelOptionUser = new MainPanelOptionsUser(this);
+		add(mainPanelOptionUser, BorderLayout.SOUTH);
+		
 	}
 	
-	public void openOrganizationPage()
+	public void openOrganizationPage(String pOrganization)
+	{
+		mainPanelOrganizations.setVisible(false);
+		
+		panelOrganization.setVisible(true);	
+		IStackArray<PetDTO> pets = new IStackArray<PetDTO>();
+		pets = generalController.getPet().findAll(pOrganization);
+		
+		mainPanelPets = new MainPanelPets(pets);
+		add(mainPanelPets, BorderLayout.CENTER);
+	}
+	
+	public void closeOrganizationPage()
 	{
 		
-		panelOrganization.setVisible(true);
-		IStackArray<PetDTO> pets = new IStackArray<PetDTO>();
-		pets.add(new PetDTO(1, "Zambrano", "Negro", "Calle 60 A-1", new Date(), true, 1, "fe@gmail.com", new ImageIcon(), "Es super bonito"));
-		pets.add(new PetDTO(1, "2mbrano", "Negro", "Calle 60 A-1", new Date(), true, 1, "fe@gmail.com", new ImageIcon(), "Es super bonito 2 jajaja"));
-		mainPanelPets = new MainPanelPets(pets);
 	}
 	
 	public static void main(String[] args) {

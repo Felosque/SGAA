@@ -71,10 +71,11 @@ public class TemporalGeneralController<T>
 	{
 		TemporalGeneralController<TemporalGeneralController> obj = new TemporalGeneralController<TemporalGeneralController>();		
 		
-		IStackArray<PetDTO> pets = obj.getPet().findAll();
+		IStackArray<PetDTO> pets = obj.getPet().findAll("feo");
 		System.out.println(pets.size());
 		for(int i = 0; i < pets.size(); i++)
 		{
+			System.out.println(pets.get(i).getName());
 			System.out.println(pets.get(i).getColor());
 			System.out.println(pets.get(i).getMail());
 		}
