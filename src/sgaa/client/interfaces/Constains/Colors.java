@@ -13,5 +13,6 @@ public class Colors {
 	
 	public static final Color COLOR_GREEN1 = new Color(199, 244, 194);
 	public static final Color COLOR_GREEN2 = new Color(161, 238, 152);
+	public static final Color COLOR_GREENBLACK = new Color(22, 34, 20);
 	
 }

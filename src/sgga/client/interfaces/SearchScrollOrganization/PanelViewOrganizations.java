@@ -17,7 +17,7 @@ import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.OrganizationDTO;
 import sgaa.server.dto.PetDTO;
 
-public class MainPanelOrganizations extends JPanel implements ActionListener{
+public class PanelViewOrganizations extends JPanel implements ActionListener{
 
     private JScrollPane scrollPane;
     private JPanel scrollPanel, btnPanelVisual;
@@ -26,7 +26,7 @@ public class MainPanelOrganizations extends JPanel implements ActionListener{
     private MainWindows mainWindows;
     private IStackArray<OrganizationDTO> organizations;
 
-    public MainPanelOrganizations(IStackArray<OrganizationDTO> pInfoPageOrganizations, MainWindows pMainWindows){
+    public PanelViewOrganizations(IStackArray<OrganizationDTO> pInfoPageOrganizations, MainWindows pMainWindows){
     	mainWindows = pMainWindows;
     	organizations = pInfoPageOrganizations;
         setPreferredSize(new Dimension(300, 400));

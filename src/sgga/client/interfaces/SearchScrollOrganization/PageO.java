@@ -26,9 +26,9 @@ public class PageO extends JPanel implements ActionListener
 {
     private JButton btnViewMore;
     private OrganizationDTO infoPageOrganization;
-    private MainPanelOrganizations mainPanelOrganizations;
+    private PanelViewOrganizations mainPanelOrganizations;
 	
-    public PageO(OrganizationDTO pInfoPageOrganization, MainPanelOrganizations pMainPanelOrganizations, Color pColor){
+    public PageO(OrganizationDTO pInfoPageOrganization, PanelViewOrganizations pMainPanelOrganizations, Color pColor){
     	mainPanelOrganizations = pMainPanelOrganizations;
     	infoPageOrganization = pInfoPageOrganization;
         setPreferredSize(new Dimension(600, 400));

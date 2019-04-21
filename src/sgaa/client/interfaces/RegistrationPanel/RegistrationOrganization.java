@@ -177,6 +177,7 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 			JFileChooser file=new JFileChooser();
 			file.showOpenDialog(this);
 			File img = file.getSelectedFile();
+			System.out.println(img.getPath());
 			refrescarImagen(img);
 		}
 		

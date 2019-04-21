@@ -1,8 +1,6 @@
 package sgaa.server.controller;
 
-import java.sql.Date;
-
-import javax.swing.ImageIcon;
+import java.util.Date;
 
 import sgaa.server.dao.PetDAO;
 import sgaa.server.dataStructure.Stack.IStackArray;
@@ -17,15 +15,15 @@ public class PetController<T>
 		dao = new PetDAO<T>();
 	}
 	
-	public boolean insert(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, ImageIcon image, String pDescription) 
+	public boolean insert(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, String pPath, String pDescription) 
 	{
-		PetDTO dato = new PetDTO(id, name, color, address, birthdate, state, breed, mail, image, pDescription);
+		PetDTO dato = new PetDTO(id, name, color, address, birthdate, state, breed, mail, pPath, pDescription);
 		return dao.insert(dato);
 	}
 
-	public boolean update(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, ImageIcon image, String pDescription) 
+	public boolean update(int id, String name, String color, String address, Date birthdate, boolean state, int breed, String mail, String pPath, String pDescription) 
 	{
-		PetDTO dato = new PetDTO(id, name, color, address, birthdate, state, breed, mail, image, pDescription);
+		PetDTO dato = new PetDTO(id, name, color, address, birthdate, state, breed, mail, pPath, pDescription);
 		return dao.update(dato);
 	}
 

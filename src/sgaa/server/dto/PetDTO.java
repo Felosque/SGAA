@@ -1,9 +1,28 @@
 package sgaa.server.dto;
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.URI;
+import java.nio.ByteBuffer;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.util.stream.Stream;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageInputStream;
 import javax.swing.ImageIcon;
 
+import sgaa.server.infrastructure.Conexion;
 import sgaa.server.interfaces.Crud;
 
 public class PetDTO implements Crud
@@ -18,6 +37,7 @@ public class PetDTO implements Crud
 	private int breed;
 	private String mail;
 	private ImageIcon image;
+	private String pathImage;
 	
 	/**
 	 * 
@@ -39,7 +59,7 @@ public class PetDTO implements Crud
 	 * @param mail
 	 * @param image
 	 */
-	public PetDTO(int id, String name, String color, String address, java.util.Date birthdate, boolean state, int breed, String mail, ImageIcon image, String pDescription) 
+	public PetDTO(int id, String name, String color, String address, java.util.Date birthdate, boolean state, int breed, String mail, String pPathImage, String pDescription) 
 	{
 		super();
 		this.id = id;
@@ -51,6 +71,7 @@ public class PetDTO implements Crud
 		this.breed = breed;
 		this.mail = mail;
 		this.image = image;
+		this.pathImage = pPathImage;
 		this.description = pDescription;
 	}
 
@@ -135,6 +156,27 @@ public class PetDTO implements Crud
 	public void setImg(ImageIcon image) {
 		this.image = image;
 	}
+	
+	//Codigo tomado de 
+	//https://es.stackoverflow.com/questions/26596/como-convertir-una-imagen-a-un-array-de-bytes-en-java
+	//Respectivos creditos a Migudev
+	public byte[] toBinary(String path) {
+	    
+		int len = path.split("\\.").length;
+	    String ext = path.split("\\.")[len - 1];
+        BufferedImage img;
+		try {
+			img = ImageIO.read(new File(path));
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	        ImageIO.write(img, ext, baos);
+	        return baos.toByteArray();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	@Override
 	public String toString() {
@@ -144,16 +186,14 @@ public class PetDTO implements Crud
 
 	@Override
 	public String insert() {
-		// TODO Auto-generated method stub
-		return "INSERT INTO public.pet(id, name, color, address, date_birth, state, breed, mail, img, description)"+
-				" VALUES ('"+id+"','"+name+"' , '"+color+"', '"+address+"', '"+birthdate+"', '"+state+"', '"+breed+"', '"+mail+"', '"+image+"', + '"+description+"');";
+		return "INSERT INTO public.pet(name, color, address, birthdate, state, breed, mail, description, img)"+
+				" VALUES ('"+name+"' , '"+color+"', '"+address+"', '"+birthdate+"', '"+state+"', '"+breed+"', '"+mail+"', '"+description+"', "+ image + ")";
 	}
 
 	@Override
 	public String update() {
-		// TODO Auto-generated method stub
-		return "UPDATE public.pet SET id='"+id+"', name='"+name+"', color='"+color+"', address='"+address+"', date_birth='"+birthdate+"', state='"+state+"', breed='"+breed+"', mail='"+mail+"', img='"+image+"'" + 
-				"description='"+description+"'" +	"WHERE id='"+id+"';";
+		return "UPDATE public.pet SET id='"+id+"', name='"+name+"', color='"+color+"', address='"+address+"', birthdate='"+birthdate+"', state='"+state+"', breed='"+breed+"', mail='"+mail+"'," + 
+				"description='"+description+"'," +" img="+image+"" +	"WHERE id='"+id+"';";
 	}
 
 	@Override
@@ -165,17 +205,12 @@ public class PetDTO implements Crud
 	@Override
 	public String findById() {
 		// TODO Auto-generated method stub
-		return "SELECT id, name, color, address, birthdate, state, breed, mail, img, description FROM public.pet WHERE id='"+id+"';";
+		return "SELECT id, name, color, address, birthdate, state, breed, mail, description, img FROM public.pet WHERE id='"+id+"';";
 	}
 
 	@Override
 	public String findAll() {
 		// TODO Auto-generated method stub
-		return "SELECT id, name, color, address, birthdate, state, breed, mail, img, description FROM public.pet WHERE mail='"+mail+"';";
-	}
-	
-	public String getSizeTable()
-	{
-		return "SELECT count(*) from public.pet";
+		return "SELECT id, name, color, address, birthdate, state, breed, mail, description, img FROM public.pet WHERE mail='"+mail+"';";
 	}
 }

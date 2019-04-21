@@ -12,10 +12,11 @@ import javax.swing.JScrollPane;
 
 import sgaa.client.estructures.InfoPagePet;
 import sgaa.client.interfaces.Constains.Colors;
+import sgaa.client.interfaces.Constains.Fonts;
 import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.PetDTO;
 
-public class MainPanelPets extends JPanel implements ActionListener{
+public class PanelViewPets extends JPanel implements ActionListener{
 
     private JScrollPane scrollPane;
     private JPanel scrollPanel, btnPanelVisual;
@@ -24,14 +25,25 @@ public class MainPanelPets extends JPanel implements ActionListener{
     private JButton btnViewMore;
     private IStackArray<PetDTO> pets;
 
-    public MainPanelPets(IStackArray<PetDTO> pInfoPagePets){
+    public PanelViewPets(IStackArray<PetDTO> pInfoPagePets){
     	pets = pInfoPagePets;
         setPreferredSize(new Dimension(1000, 100));
         setLayout(new BorderLayout());
         p = new GridLayout(1, 1);
         initComponents();
-        Page pe = new Page(pets.get(0), Colors.COLOR_BLUE1);
-        addPanel(pe);
+        if(pInfoPagePets.size() > 0)
+        {
+	        Page pe = new Page(pets.get(0), Colors.COLOR_BLUE1);
+	        addPanel(pe);
+        }else
+        {
+        	setBackground(Colors.SECONDARY_COLOR);
+        	JLabel info = new JLabel("UPS, LA FUNDACIÓN NO TIENE MASCOTAS EN ADOPCIÓN...");
+        	info.setFont(Fonts.FONT_BODY_BLOD_1);
+        	info.setForeground(Colors.COLOR_GREENBLACK);
+        	info.setHorizontalAlignment(JLabel.CENTER);
+        	add(info);
+        }
     }
 
     private void initComponents(){

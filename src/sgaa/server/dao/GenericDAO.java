@@ -1,6 +1,7 @@
 package sgaa.server.dao;
 
 import java.lang.reflect.Method;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -80,15 +81,6 @@ public class GenericDAO<T>
 		ResultSet rs = con.getQuery(dato.findAll());
 		IStackArray<T> list = getQueryList(rs);
 		return list;
-	}
-	
-	public int getRowsTable(Crud dato) throws SQLException {
-		ResultSet rs = con.getQuery(dato.getSizeTable());
-		int number = -1;
-		while (rs.next()) {
-			number = rs.getInt(0);
-		}
-		return number;
 	}
 
 	//TODO 	Se puede elminar el código comentado

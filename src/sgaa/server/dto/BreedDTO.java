@@ -67,11 +67,6 @@ public class BreedDTO implements Crud
 		// TODO Auto-generated method stub
 		return "SELECT id, species, breed FROM public.breed;";
 	}
-	@Override
-	public String getSizeTable() {
-		return "SELECT count(*) from public.breed";
-	}
-	
 	
 	
 }

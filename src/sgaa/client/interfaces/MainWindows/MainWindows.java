@@ -16,7 +16,7 @@ import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.OrganizationDTO;
 import sgaa.server.dto.PetDTO;
 import sgaa.server.dto.UserDTO;
-import sgga.client.interfaces.SearchScrollOrganization.MainPanelOrganizations;
+import sgga.client.interfaces.SearchScrollOrganization.PanelViewOrganizations;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -27,13 +27,13 @@ public class MainWindows extends JFrame {
 	
 	private MainPanel mainPanel;
 	
-	private MainPanelPets mainPanelPets;
+	private PanelViewPets mainPanelPets;
 	
 	private PanelOrganization panelOrganization;
 	
 	private UserSession userSession;
 	
-	private MainPanelOrganizations mainPanelOrganizations;
+	private PanelViewOrganizations mainPanelOrganizations;
 	
 	private GeneralController<GeneralController> generalController = new GeneralController<GeneralController>();
 	
@@ -73,7 +73,7 @@ public class MainWindows extends JFrame {
 		//Se crea el array de las organizaciones a mostrar
 		IStackArray<OrganizationDTO> organizations = new IStackArray<OrganizationDTO>();
 		organizations = generalController.getOrganization().findAll();
-		mainPanelOrganizations = new MainPanelOrganizations(organizations, this);
+		mainPanelOrganizations = new PanelViewOrganizations(organizations, this);
 		add(mainPanelOrganizations, BorderLayout.CENTER);
 		
 		MainPanelOptionsUser mainPanelOptionUser = new MainPanelOptionsUser(this);
@@ -89,7 +89,7 @@ public class MainWindows extends JFrame {
 		IStackArray<PetDTO> pets = new IStackArray<PetDTO>();
 		pets = generalController.getPet().findAll(pOrganization);
 		
-		mainPanelPets = new MainPanelPets(pets);
+		mainPanelPets = new PanelViewPets(pets);
 		add(mainPanelPets, BorderLayout.CENTER);
 	}
 	

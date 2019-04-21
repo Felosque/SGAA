@@ -61,7 +61,9 @@ public class Conexion
 		boolean ex = false;
 		
 		try {
+			System.out.println(query);
 			st = con.createStatement();
+			
 			ex = st.execute(query);
 			ex = true;
 		} catch (SQLException e) {

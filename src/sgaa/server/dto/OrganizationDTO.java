@@ -125,8 +125,4 @@ public class OrganizationDTO implements Crud
 		return "SELECT mail, password, name, address, phone_number, registration_date FROM public.organization;";
 	}
 
-	@Override
-	public String getSizeTable() {
-		return "SELECT count(*) from public.organization";
-	}
 }

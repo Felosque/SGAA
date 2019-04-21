@@ -71,15 +71,9 @@ public class TemporalGeneralController<T>
 	{
 		TemporalGeneralController<TemporalGeneralController> obj = new TemporalGeneralController<TemporalGeneralController>();		
 		
-		IStackArray<PetDTO> pets = obj.getPet().findAll("feo");
-		System.out.println(pets.size());
-		for(int i = 0; i < pets.size(); i++)
-		{
-			System.out.println(pets.get(i).getName());
-			System.out.println(pets.get(i).getColor());
-			System.out.println(pets.get(i).getMail());
-		}
 		
+		String path = "/home/felosque/Descargas/pet_default.png";
+		obj.getPet().insert(0, "INSERTADO IMAGEN", "I", "I", new Date(), true, 5, "cosomunicipal@gmail.com", path, "El es un perro jugueton y arañon");
 		
 		
 		/*

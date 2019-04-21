@@ -12,5 +12,4 @@ public interface Crud {
 	
 	public String findAll();
 
-	public String getSizeTable();
 }
