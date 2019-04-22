@@ -16,10 +16,12 @@ Las funcionalidades del sistema se dividen en dos partes, por un lado, tenemos u
     
     • Los usuarios pueden adoptar una mascota. Al hacer la adopción, el sistema genera una ficha diciendo que la persona en cuestión posee dicha mascota ahora.
     
-    • Si un usuario adopta una mascota, este puede modificar la ficha de la mascota en cuestión.  
+    • Si un usuario adopta una mascota, este puede modificar la ficha de la mascota en cuestión (Nombre de la mascota).  
     
 *Fundación:*
 
     • La Fundación puede eliminar cualquier registro que se encuentre en la lista de adopción de mascotas.
     
     • La Fundación es capaz de modificar los registros creados, así como también crear un registro nuevo.
+    
+    • La Fundación puede buscar entre sus registros la mascota que desee.
