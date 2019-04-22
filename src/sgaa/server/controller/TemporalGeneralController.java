@@ -72,8 +72,7 @@ public class TemporalGeneralController<T>
 		TemporalGeneralController<TemporalGeneralController> obj = new TemporalGeneralController<TemporalGeneralController>();		
 		
 		
-		String path = "/home/felosque/Descargas/pet_default.png";
-		obj.getPet().insert(0, "INSERTADO IMAGEN", "I", "I", new Date(), true, 5, "cosomunicipal@gmail.com", path, "El es un perro jugueton y arañon");
+		System.out.println(obj.getBreed().findById(8).getBreed());
 		
 		
 		/*

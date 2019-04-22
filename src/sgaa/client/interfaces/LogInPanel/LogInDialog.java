@@ -8,11 +8,13 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import sgaa.client.estructures.OrganizationSession;
 import sgaa.client.estructures.ServicesStructures;
 import sgaa.client.estructures.UserSession;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
 import sgaa.client.interfaces.MainWindows.MainPanel;
+import sgaa.server.dto.OrganizationDTO;
 import sgaa.server.dto.UserDTO;
 
 import javax.swing.JLabel;
@@ -105,7 +107,7 @@ public class LogInDialog extends JDialog implements ActionListener, WindowListen
 			if(statusLogin.equals(USER))
 			{
 				UserDTO userDto = logInOption.getMainPanel().getMainWindows().getGeneralController().getUser()
-						.findById(tbxCorreo.getText());
+									.findById(tbxCorreo.getText());
 				if(ServicesStructures.comparePassword(userDto.getPassword(), ServicesStructures.viewPassword(tbxContrasena.getPassword()))) {
 					UserSession session = new UserSession(userDto);
 					logInOption.getMainPanel().getMainWindows().activateSessionUser(session);
@@ -118,7 +120,17 @@ public class LogInDialog extends JDialog implements ActionListener, WindowListen
 				
 			}else if (statusLogin.equals(ORGANIZATION))
 			{
-				this.dispose();
+				OrganizationDTO orgDto = logInOption.getMainPanel().getMainWindows().getGeneralController().getOrganization()
+										.findById(tbxCorreo.getText());
+				if(ServicesStructures.comparePassword(orgDto.getPassword(), ServicesStructures.viewPassword(tbxContrasena.getPassword()))) {
+					OrganizationSession session = new OrganizationSession(orgDto);
+					logInOption.getMainPanel().getMainWindows().activateSessionOrganization(session);
+					logInOption.getMainPanel().mainWindowsVisible(true);
+					this.dispose();
+				}else
+				{
+					JOptionPane.showMessageDialog(this, "Usuario o contraseña no encontrado en la base de datos.");
+				}
 			}
 			
 		}

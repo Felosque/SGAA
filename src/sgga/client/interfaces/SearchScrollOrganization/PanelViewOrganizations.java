@@ -91,13 +91,13 @@ public class PanelViewOrganizations extends JPanel implements ActionListener{
 		if(e.getActionCommand().equals("Poner")) {
 			for(int i = 0; i < 5; i++) {
 				PageO addPage = null;
-				if(p.getColumns() < organizations.size())
+				if(p.getColumns() - 1  < organizations.size())
 				{
 					if(i%2 == 0)
 					{
-						addPage = new PageO(organizations.get(p.getColumns()), this, Colors.COLOR_GREEN2);
+						addPage = new PageO(organizations.get(p.getColumns() - 1), this, Colors.COLOR_GREEN2);
 					}else {
-						addPage = new PageO(organizations.get(p.getColumns()), this,  Colors.COLOR_GREEN1);
+						addPage = new PageO(organizations.get(p.getColumns() - 1), this,  Colors.COLOR_GREEN1);
 					}
 					addPanel(addPage);
 					scrollPanel.revalidate();

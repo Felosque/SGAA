@@ -98,15 +98,15 @@ public class PanelViewPets extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equals("Poner")) {
-			for(int i = p.getRows() - 1; i < 5; i++) {
+			for(int i = 0; i < 4; i++) {
 				Page addPage = null;
-				if(i < pets.size())
+				if(p.getRows() - 1 < pets.size())
 				{
 					if(i%2 == 0)
 					{
-						addPage = new Page(pets.get(i), Colors.COLOR_BLUE1);
+						addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE2);
 					}else {
-						addPage = new Page(pets.get(i), Colors.COLOR_BLUE2);
+						addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE1);
 					}
 					addPanel(addPage);
 					scrollPanel.revalidate();

@@ -1,80 +1,113 @@
 package sgaa.client.interfaces.OrganizationOptions;
 
 import java.awt.GridLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-
 import sgaa.client.interfaces.Constains.Colors;
-import sgaa.client.interfaces.Constains.Fonts;
 import sgaa.client.interfaces.MainWindows.MainWindows;
 
-public class MainPanelOrganizationOptions extends JPanel {
+public class MainPanelOrganizationOptions extends JPanel implements ActionListener {
 
 	private MainWindows mainWindows;
+	
+	private JButton btnEditPet, btnDeletePet, btnAddPet, btnChosePet, btnInfoOrg, btnConfig;
+	
+	private static String EDIT_PET = "EditPet";
+	private static String DELETE_PET = "DeltePet";
+	private static String ADD_PET = "AddPet";
+	private static String CHOSE_PET = "ChosePet";
+	private static String INFO_ORG = "Infoorg";
+	private static String CONFIG = "Config";
 	
 	public MainPanelOrganizationOptions(MainWindows pMainWindows)
 	{
 		mainWindows = pMainWindows;
-		setLayout(new GridLayout(1, 2));
-		TitledBorder titlePanel = new TitledBorder("Panel de usuario");
+		setLayout(new GridLayout(3, 2));
+		TitledBorder titlePanel = new TitledBorder("Opciones de administración");
 		titlePanel.setTitleColor(Colors.COLOR_WHITE);
 		setBorder(titlePanel);
 		setBackground(Colors.PRIMARY_COLOR);
 		
-		JPanel panelEast = new JPanel();
-		panelEast.setBackground(Colors.PRIMARY_COLOR);
-		add(panelEast);
+		btnEditPet = new JButton("Editar Mascota");
+		btnEditPet.addActionListener(this);
+		btnEditPet.setActionCommand(EDIT_PET);
+		add(btnEditPet);
 		
-		panelEast.setLayout(new GridLayout(3, 2));
+		btnDeletePet = new JButton("Eliminar Mascota");
+		btnDeletePet.addActionListener(this);
+		btnDeletePet.setActionCommand(DELETE_PET);
+		add(btnDeletePet);
 		
-		JLabel iName = new JLabel("Nombre: ");
-		iName.setHorizontalAlignment(JLabel.RIGHT);
-		iName.setForeground(Colors.COLOR_WHITE);
-		iName.setFont(Fonts.FONT_BODY_BLOD_1);
-		panelEast.add(iName);
+		btnAddPet = new JButton("Añadir Mascota");
+		btnAddPet.setActionCommand(ADD_PET);
+		btnAddPet.addActionListener(this);
+		add(btnAddPet);
 		
-		JLabel name = new JLabel(mainWindows.getUserSession().getName());
-		name.setForeground(Colors.COLOR_WHITE);
-		name.setFont(Fonts.FONT_BODY_1);
-		panelEast.add(name);
+		btnChosePet = new JButton("Buscar Mascota");
+		btnChosePet.setActionCommand(CHOSE_PET);
+		add(btnChosePet);
 		
-		JLabel iDirection  = new JLabel("Dirección: ");
-		iDirection.setHorizontalAlignment(JLabel.RIGHT);
-		iDirection.setForeground(Colors.COLOR_WHITE);
-		iDirection.setFont(Fonts.FONT_BODY_BLOD_1);
-		panelEast.add(iDirection);
+		btnInfoOrg = new JButton("Información de la fundación");
+		btnInfoOrg.setActionCommand(INFO_ORG);
+		btnInfoOrg.addActionListener(this);
+		add(btnInfoOrg);
 		
-		JLabel direction = new JLabel(mainWindows.getUserSession().getHouse());
-		direction.setForeground(Colors.COLOR_WHITE);
-		direction.setFont(Fonts.FONT_BODY_1);
-		panelEast.add(direction);
+		btnConfig = new JButton("Configuración");
+		btnConfig.setActionCommand(CONFIG);
+		btnConfig.addActionListener(this);
+		add(btnConfig);
 		
-		JLabel iBirthDay = new JLabel("Fecha de nacimiento: ");
-		iBirthDay.setHorizontalAlignment(JLabel.RIGHT);
-		iBirthDay.setFont(Fonts.FONT_BODY_BLOD_1);
-		iBirthDay.setForeground(Colors.COLOR_WHITE);
-		panelEast.add(iBirthDay);
-		
-		JLabel birthDate = new JLabel(mainWindows.getUserSession().getBirthDate().toString());
-		birthDate.setForeground(Colors.COLOR_WHITE);
-		birthDate.setFont(Fonts.FONT_BODY_1);
-		panelEast.add(birthDate);
-		
-		JPanel panelWest = new JPanel();
-		panelWest.setLayout(new GridLayout(3, 2));
-		panelWest.setBackground(Colors.PRIMARY_COLOR);
-		
-		panelWest.add(new JButton("Mis mascotas"));
-		panelWest.add(new JButton("Configuración"));
-		panelWest.add(new JButton("Buscar mascota"));
-		panelWest.add(new JButton("Cerrar sección"));
-		panelWest.add(new JButton("Opción 1"));
-		panelWest.add(new JButton("Opción 2"));
-		
-		add(panelWest);
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
+		
+		if(command.equals(EDIT_PET))
+		{
+			
+		}else if(command.equals(DELETE_PET))
+		{
+			
+		}else if(command.equals(ADD_PET))
+		{
+			DialogAddPet dialogAddPet = new DialogAddPet(mainWindows);
+			dialogAddPet.setVisible(true);
+			dialogAddPet.setModal(true);
+			
+		}else if(command.equals(CHOSE_PET))
+		{
+			
+		}else if(command.equals(INFO_ORG))
+		{
+			
+		}else if(command.equals(CONFIG))
+		{
+			int dialogResult = JOptionPane.showConfirmDialog(mainWindows, "¿Seguro que quieres cerrar sesión?");
+			if(dialogResult == JOptionPane.YES_OPTION)
+			{
+				mainWindows.closeSessionOrganization();
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

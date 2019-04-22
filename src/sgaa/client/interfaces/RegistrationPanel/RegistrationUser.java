@@ -203,8 +203,7 @@ public class RegistrationUser extends JDialog implements ActionListener, WindowL
 			//Fechas del registro
 			Calendar fechaActual = Calendar.getInstance();
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-			fechaActual.set(2019, 01-1, 8);
-			Date dateR = fechaActual.getTime();	
+			Date dateR = new Date();
 			fechaActual.set((int)spAno.getValue(), ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue() + 1));
 			Date dateU = fechaActual.getTime();	
 			

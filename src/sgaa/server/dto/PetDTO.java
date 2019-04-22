@@ -121,7 +121,7 @@ public class PetDTO implements Crud
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(java.util.Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -177,7 +177,7 @@ public class PetDTO implements Crud
 		
 		return null;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "PetDTO [id=" + id + ", name=" + name + ", color=" + color + ", address=" + address + ", birthdate="
