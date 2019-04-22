@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import sgaa.client.estructures.ServicesStructures;
 import sgaa.client.interfaces.Constains.Colors;
@@ -239,6 +240,8 @@ public class DialogAddPet extends JDialog implements ActionListener{
 		{
 			JFileChooser file=new JFileChooser();
 			file.showOpenDialog(this);
+			file.addChoosableFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png", "tif"));
+			file.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			File img = file.getSelectedFile();
 			System.out.println(img.getPath());
 			refrescarImagen(img);
@@ -246,8 +249,7 @@ public class DialogAddPet extends JDialog implements ActionListener{
 		{
 			//Fecha de nacimiento
 			Calendar fechaActual = Calendar.getInstance();
-			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-			fechaActual.set((int)spAno.getValue(), ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue() + 1));
+			fechaActual.set((int)spAno.getValue() +1, ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue()));
 			Date dateU = fechaActual.getTime();	
 			
 			boolean action = mainWindows.getGeneralController().getPet().insert(-1, tbxName.getText(), tbxColor.getText(), tbxAdress.getText(),

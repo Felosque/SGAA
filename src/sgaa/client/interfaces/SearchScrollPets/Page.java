@@ -35,7 +35,7 @@ public class Page extends JPanel implements ActionListener
         
         //Content of image
         JPanel imagePanel = new JPanel();
-        Image img = new ImageIcon("img/dog.jpg").getImage();
+        Image img = new ImageIcon("img/pet_default.png").getImage();
         ImageIcon img2=new ImageIcon(img.getScaledInstance(300, 290, Image.SCALE_SMOOTH));
         JLabel picture = new JLabel();
         picture.setIcon(img2);

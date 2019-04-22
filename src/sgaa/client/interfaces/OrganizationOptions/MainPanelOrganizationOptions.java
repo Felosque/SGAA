@@ -51,12 +51,12 @@ public class MainPanelOrganizationOptions extends JPanel implements ActionListen
 		btnChosePet.setActionCommand(CHOSE_PET);
 		add(btnChosePet);
 		
-		btnInfoOrg = new JButton("Información de la fundación");
+		btnInfoOrg = new JButton("Información de la Fundación");
 		btnInfoOrg.setActionCommand(INFO_ORG);
 		btnInfoOrg.addActionListener(this);
 		add(btnInfoOrg);
 		
-		btnConfig = new JButton("Configuración");
+		btnConfig = new JButton("Cerrar Sesión");
 		btnConfig.setActionCommand(CONFIG);
 		btnConfig.addActionListener(this);
 		add(btnConfig);
@@ -69,10 +69,13 @@ public class MainPanelOrganizationOptions extends JPanel implements ActionListen
 		
 		if(command.equals(EDIT_PET))
 		{
+			DialogSearchPetID search = new DialogSearchPetID(mainWindows, DialogSearchPetID.DIALOG_EDIT);
+			search.setVisible(true);
 			
 		}else if(command.equals(DELETE_PET))
 		{
-			
+			DialogSearchPetID search = new DialogSearchPetID(mainWindows, DialogSearchPetID.DIALOG_DELETE);
+			search.setVisible(true);
 		}else if(command.equals(ADD_PET))
 		{
 			DialogAddPet dialogAddPet = new DialogAddPet(mainWindows);
@@ -81,7 +84,8 @@ public class MainPanelOrganizationOptions extends JPanel implements ActionListen
 			
 		}else if(command.equals(CHOSE_PET))
 		{
-			
+			DialogSearchPetID search = new DialogSearchPetID(mainWindows, DialogSearchPetID.DIALOG_SEARCH);
+			search.setVisible(true);
 		}else if(command.equals(INFO_ORG))
 		{
 			

@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import sgaa.client.estructures.ServicesStructures;
 import sgaa.client.interfaces.Constains.Colors;
@@ -181,9 +182,10 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 		if(e.getActionCommand().equals("SUBIR"))
 		{
 			JFileChooser file=new JFileChooser();
+			file.addChoosableFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png", "tif"));
+			file.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			file.showOpenDialog(this);
 			File img = file.getSelectedFile();
-			System.out.println(img.getPath());
 			refrescarImagen(img);
 		}else if(e.getActionCommand().equals("REGISTRAR"))
 		{
