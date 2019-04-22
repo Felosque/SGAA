@@ -8,7 +8,7 @@ El sistema sirve para poder organizar de manera sistemática las diferentes espe
 
 *¿Cuáles son las funcionalidades del sistema?*
 
-Las funcionalidades del sistema se dividen en dos partes, por un lado, tenemos usuarios y por el otro el administrador. A continuación, se describen las funcionalidades que cada uno posee sobre el sistema:
+Las funcionalidades del sistema se dividen en dos partes, por un lado, tenemos usuarios y por el otro la fundación. A continuación, se describen las funcionalidades que cada uno de los actores posee sobre el sistema:
 
 *Usuarios:*
 
