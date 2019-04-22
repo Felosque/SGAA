@@ -10,10 +10,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import sgaa.client.estructures.ServicesStructures;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Image;
@@ -22,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.util.Date;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
@@ -35,6 +38,7 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 	private JPasswordField tbxPassword;
 	private JPasswordField tbxPasswordR;
 	private JTextField tbxHouse;
+	private JFormattedTextField tbxPhone;
 	
 	private JLabel picture;
 	private JPanel imagePanel;
@@ -109,7 +113,7 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 		lblTelefono.setBounds(54, 254, 160, 26);
 		contentPanel.add(lblTelefono);
 		
-		JFormattedTextField tbxPhone = new JFormattedTextField();
+		tbxPhone = new JFormattedTextField();
 		tbxPhone.setBounds(224, 258, 242, 20);
 		contentPanel.add(tbxPhone);
 		
@@ -128,6 +132,8 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
         ImageIcon img2=new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
 		
 		JButton btnRegistrarme = new JButton("REGISTRARME");
+		btnRegistrarme.setActionCommand("REGISTRAR");
+		btnRegistrarme.addActionListener(this);
 		btnRegistrarme.setBounds(167, 580, 166, 48);
 		contentPanel.add(btnRegistrarme);
 		
@@ -179,6 +185,22 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 			File img = file.getSelectedFile();
 			System.out.println(img.getPath());
 			refrescarImagen(img);
+		}else if(e.getActionCommand().equals("REGISTRAR"))
+		{
+			
+			boolean result =  registrationDialog.getMainPanel().getMainWindows().getGeneralController().getOrganization()
+					.insert(tbxMail.getText(), ServicesStructures.viewPassword(tbxPassword.getPassword()), tbxName.getText(), tbxHouse.getText(), 
+							Long.parseLong(tbxPhone.getText()), new Date());
+				
+				if(result == true)
+				{
+					JOptionPane.showMessageDialog(this, "¡Se ha registrado correctamente la fundación, ya puede loguearse!");
+					registrationDialog.getMainPanel().mainWindowsVisible(true);
+					this.dispose();
+				}else
+				{
+					JOptionPane.showMessageDialog(this, "¡Hubo un error al registrar la fundación!\n Posiblemente ese correo ya este registrado en la base de datos.");
+				}
 		}
 		
 	}

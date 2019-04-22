@@ -1,6 +1,6 @@
 package sgaa.server.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 import sgaa.server.interfaces.Crud;
 

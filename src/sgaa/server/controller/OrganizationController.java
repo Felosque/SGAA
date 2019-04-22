@@ -1,6 +1,7 @@
 package sgaa.server.controller;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import sgaa.server.dao.OrganizationDAO;
 import sgaa.server.dataStructure.Stack.IStackArray;
@@ -15,13 +16,13 @@ public class OrganizationController<T>
 		dao = new OrganizationDAO<T>();
 	}
 
-	public boolean insert(String mail ,String password, String name, String address, int phoneNumber, Date birthdate, Date registrationDate)
+	public boolean insert(String mail ,String password, String name, String address, long phoneNumber, Date registrationDate)
 	{
 		OrganizationDTO dato = new OrganizationDTO(mail, password, name, address, phoneNumber, registrationDate);
 		return dao.insert(dato);
 	}
 
-	public boolean update(String mail ,String password, String name, String address, int phoneNumber, Date birthdate, Date registrationDate)
+	public boolean update(String mail ,String password, String name, String address, long phoneNumber, Date registrationDate)
 	{
 		OrganizationDTO dato = new OrganizationDTO(mail, password, name, address, phoneNumber, registrationDate);
 		return dao.update(dato);
