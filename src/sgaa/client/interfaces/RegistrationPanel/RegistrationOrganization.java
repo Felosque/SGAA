@@ -129,8 +129,7 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 		tbxHouse.setColumns(10);
 		tbxHouse.setBounds(224, 295, 242, 20);
 		contentPanel.add(tbxHouse);
-        Image img = new ImageIcon("img/org.png").getImage();
-        ImageIcon img2=new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+        
 		
 		JButton btnRegistrarme = new JButton("REGISTRARME");
 		btnRegistrarme.setActionCommand("REGISTRAR");
@@ -149,6 +148,9 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 		panel.add(btnSubirImagen);
 		btnSubirImagen.addActionListener(this);
 		btnSubirImagen.setActionCommand("SUBIR");
+		
+		Image img = new ImageIcon("img/org.png").getImage();
+        ImageIcon img2=new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
 		
 		imagePanel = new JPanel();
 		imagePanel.setBounds(45, 290, 200, 200);

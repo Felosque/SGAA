@@ -30,6 +30,15 @@ public class ServicesStructures {
 		return month;
 	}
 	
+	public static String getMonthText(int id)
+	{
+		String month = null;
+		String[] monthStrings = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+				"Julio","Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+		month = monthStrings[id];
+		return month;
+	}
+	
 	public static String viewPassword(char[] pPassword)
 	{
 		String password = "";

@@ -70,7 +70,6 @@ public class PetDTO implements Crud
 		this.state = state;
 		this.breed = breed;
 		this.mail = mail;
-		this.image = image;
 		this.pathImage = pPathImage;
 		this.description = pDescription;
 	}
@@ -81,6 +80,16 @@ public class PetDTO implements Crud
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void setPathImage(String pPath)
+	{
+		pathImage = pPath;
+	}
+	
+	public String getPathImage()
+	{
+		return pathImage;
 	}
 
 	public String getDescription()
@@ -117,8 +126,10 @@ public class PetDTO implements Crud
 		this.address = address;
 	}
 
-	public java.util.Date getBirthdate() {
-		return birthdate;
+	public Date getBirthdate() {
+		
+		Date d = new Date(birthdate.getYear(), birthdate.getMonth(), birthdate.getDay());
+		return d;
 	}
 
 	public void setBirthdate(java.util.Date birthdate) {

@@ -8,4 +8,5 @@ public class PetDAO<T> extends GenericDAO<PetDTO>
 	{	
 		super(PetDTO.class);
 	}
+	
 }
