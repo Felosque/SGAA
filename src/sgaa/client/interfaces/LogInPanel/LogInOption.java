@@ -37,6 +37,7 @@ public class LogInOption extends JDialog implements ActionListener, WindowListen
 		contentPanel.setLayout(null);
 		contentPanel.setBackground(Colors.SECONDARY_COLOR);
 		addWindowListener(this);
+		setAlwaysOnTop(true);
 		setLocationRelativeTo(pMainPanel);
 		
 		JLabel lblLoginSgaa = new JLabel("LOGIN SGAA");

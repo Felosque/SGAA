@@ -48,6 +48,7 @@ public class DialogSearchPetID extends JDialog implements ActionListener {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		contentPanel.setBackground(Colors.SECONDARY_COLOR);
+		setAlwaysOnTop(true);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 450, 53);
@@ -108,19 +109,16 @@ public class DialogSearchPetID extends JDialog implements ActionListener {
 				{
 					if(statusDialog.equals(DIALOG_EDIT)) 
 					{
-						JOptionPane.showMessageDialog(this, "Entro a editar");
 						DialogPetOptions dialog = new DialogPetOptions(mainWindows, pet, DIALOG_EDIT);
 						dialog.setVisible(true);
 						this.dispose();
 					}else if(statusDialog.equals(DIALOG_DELETE)) 
 					{
-						JOptionPane.showMessageDialog(this, "Entro a eliminar");
 						DialogPetOptions dialog = new DialogPetOptions(mainWindows, pet, DIALOG_DELETE);
 						dialog.setVisible(true);
 						this.dispose();
 					}else if(statusDialog.equals(DIALOG_SEARCH)) 
 					{
-						JOptionPane.showMessageDialog(this, "Entro a buscar");
 						DialogPetOptions dialog = new DialogPetOptions(mainWindows, pet, DIALOG_SEARCH);
 						dialog.setVisible(true);
 						this.dispose();

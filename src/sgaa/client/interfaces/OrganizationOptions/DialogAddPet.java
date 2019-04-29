@@ -29,6 +29,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import sgaa.client.estructures.ServicesStructures;
+import sgaa.client.exceptions.FormException;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
 import sgaa.client.interfaces.MainWindows.MainWindows;
@@ -68,6 +69,7 @@ public class DialogAddPet extends JDialog implements ActionListener{
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setAlwaysOnTop(true);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			setBounds(100, 100, 560, 750);
@@ -248,20 +250,26 @@ public class DialogAddPet extends JDialog implements ActionListener{
 		}else if(e.getActionCommand().equals("ANADIR"))
 		{
 			//Fecha de nacimiento
-			Calendar fechaActual = Calendar.getInstance();
-			fechaActual.set((int)spAno.getValue() +1, ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue()));
-			Date dateU = fechaActual.getTime();	
-			
-			boolean action = mainWindows.getGeneralController().getPet().insert(-1, tbxName.getText(), tbxColor.getText(), tbxAdress.getText(),
-					dateU, true, cbSpecies.getSelectedIndex(), mainWindows.getOrgSession().getMail(), null, tbxDescription.getText());
-			if(action)
+			try
 			{
-				JOptionPane.showMessageDialog(this, "Se ha registrado la mascota correctamente, felicitaciones");
-				mainWindows.repaintPetsList();
-				this.dispose();
-			}else
-			{
-				JOptionPane.showMessageDialog(this, "¡Ups! Hubo un error al registrar la mascota");
+				ServicesStructures.viewFormPet(tbxName.getText(), tbxColor.getText(), tbxAdress.getText());
+				Calendar fechaActual = Calendar.getInstance();
+				fechaActual.set((int)spAno.getValue() +1, ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue()));
+				Date dateU = fechaActual.getTime();	
+				
+				boolean action = mainWindows.getGeneralController().getPet().insert(-1, tbxName.getText(), tbxColor.getText(), tbxAdress.getText(),
+						dateU, true, cbSpecies.getSelectedIndex(), mainWindows.getOrgSession().getMail(), null, tbxDescription.getText());
+				if(action)
+				{
+					JOptionPane.showMessageDialog(this, "Se ha registrado la mascota correctamente, felicitaciones");
+					mainWindows.repaintPetsList();
+					this.dispose();
+				}else
+				{
+					JOptionPane.showMessageDialog(this, "¡Ups! Hubo un error al registrar la mascota");
+				}
+			}catch (FormException er) {
+				JOptionPane.showMessageDialog(this, er.getMessage());
 			}
 		}
 		

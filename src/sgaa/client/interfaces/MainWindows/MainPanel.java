@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import sgaa.client.interfaces.Constains.Colors;
@@ -67,6 +68,8 @@ public class MainPanel extends JPanel implements ActionListener{
 		panelBottons02.add(new JLabel(""));
 		
 		btnCredits = new JButton("Creditos");
+		btnCredits.setActionCommand("CREDITS");
+		btnCredits.addActionListener(this);
 		panelBottons02.add(btnCredits);
 		
 		panelBottons01.add(panelBottons02);	
@@ -102,6 +105,13 @@ public class MainPanel extends JPanel implements ActionListener{
 		{
 			mainWindowsVisible(false);
 			logInOption.setVisible(true);
+		}else if(command.equals("CREDITS"))
+		{
+			JOptionPane.showMessageDialog(mainWindows,
+					"\t© Sistema de Gestion de Animales en Adopción (SGAA - 2019) © \n\n"
+					+"- Ezequiel Melo Bustos                          \tCodigo:\t (2220171073)\n"
+					+"- Luis Felipe Londoño Medina               \tCodigo:\t (2220171044)\n"
+					+"- Richard Javier Zamora Herrera            \tCodigo:\t (2220171018)\n");
 		}
 		
 	}

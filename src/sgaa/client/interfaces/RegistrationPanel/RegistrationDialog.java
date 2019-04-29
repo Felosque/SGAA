@@ -53,6 +53,7 @@ public class RegistrationDialog extends JDialog implements ActionListener, Windo
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setAlwaysOnTop(true);
 		
 		JLabel lblesperaAntesDe = new JLabel("\u00A1Espera! Cómo quieres registrarte en el SGAA?");
 		lblesperaAntesDe.setBounds(98, 66, 400, 69);

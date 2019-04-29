@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import sgaa.client.estructures.ServicesStructures;
+import sgaa.client.exceptions.FormException;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
 
@@ -60,6 +61,7 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		contentPanel.setBackground(Colors.PRIMARY_COLOR);
+		setAlwaysOnTop(true);
 		
 		JLabel lblNombre = new JLabel("Nombre Organizaci\u00F3n:");
 		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -191,8 +193,13 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 			refrescarImagen(img);
 		}else if(e.getActionCommand().equals("REGISTRAR"))
 		{
-			
-			boolean result =  registrationDialog.getMainPanel().getMainWindows().getGeneralController().getOrganization()
+			try
+			{
+				if(tbxPhone.getText().equals("")) {tbxPhone.setText("2000001");}
+				ServicesStructures.viewFormOrg(tbxName.getText(), tbxMail.getText(), ServicesStructures.viewPassword(tbxPassword.getPassword()), 
+						ServicesStructures.viewPassword(tbxPasswordR.getPassword()), Long.parseLong(tbxPhone.getText()), tbxHouse.getText());
+				
+				boolean result =  registrationDialog.getMainPanel().getMainWindows().getGeneralController().getOrganization()
 					.insert(tbxMail.getText(), ServicesStructures.viewPassword(tbxPassword.getPassword()), tbxName.getText(), tbxHouse.getText(), 
 							Long.parseLong(tbxPhone.getText()), new Date());
 				
@@ -205,6 +212,9 @@ public class RegistrationOrganization extends JDialog implements ActionListener,
 				{
 					JOptionPane.showMessageDialog(this, "¡Hubo un error al registrar la fundación!\n Posiblemente ese correo ya este registrado en la base de datos.");
 				}
+			}catch (FormException er) {
+				JOptionPane.showMessageDialog(this, er.getMessage());
+			}
 		}
 		
 	}

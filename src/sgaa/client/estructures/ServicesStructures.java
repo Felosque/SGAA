@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import sgaa.client.exceptions.FormException;
 import sgaa.client.interfaces.RegistrationPanel.RegistrationUser;
 import sgaa.server.dto.OrganizationDTO;
 import sgaa.server.dto.PetDTO;
@@ -65,6 +66,58 @@ public class ServicesStructures {
 			return true;
 		}
 		return false;
+	}
+	
+	public static void viewFormUser(String pName, String pMail, String pPassWord, String pRPassword, long pPhone, String pAddress, int pYear) throws FormException
+	{
+		if(pName.equals("") || pMail.equals(""))
+		{
+			throw new FormException("¡Usuario o emal incorrectos para registrarse en SGAA!");
+		}
+		if(comparePassword(pPassWord, pRPassword) == false)
+		{
+			throw new FormException("¡Las contraseñas no coinciden!");
+		}
+		if(pPhone < 2000000)
+		{
+			throw new FormException("¡El telefono debe ser un numero valido!");
+		}
+		if(pAddress.equals(""))
+		{
+			throw new FormException("¡Debes poner una dirección de casa valida!");
+		}
+		if(pYear > 2003)
+		{
+			throw new FormException("¡Debes tener al menos 16 años para poder registrarte en SGAA!");
+		}
+	}
+	
+	public static void viewFormOrg(String pName, String pMail, String pPassword, String pRPassword, long pPhone, String pAddress) throws FormException
+	{
+		if(pName.equals("") || pMail.equals(""))
+		{
+			throw new FormException("¡Usuario o emal incorrectos para registrarse en SGAA!");
+		}
+		if(comparePassword(pPassword, pRPassword) == false)
+		{
+			throw new FormException("¡Las contraseñas no coinciden!");
+		}
+		if(pPhone < 2000000)
+		{
+			throw new FormException("¡El telefono debe ser un numero valido!");
+		}
+		if(pAddress.equals(""))
+		{
+			throw new FormException("¡Debes poner una dirección de casa valida!");
+		}
+	}
+	
+	public static void viewFormPet(String pName, String pColor, String pAddress) throws FormException
+	{
+		if(pName.equals("") || pColor.equals("") || pAddress.equals(""))
+		{
+			throw new FormException("¡La mascota debe tener al menos un nombre, color y dirección de casa!");
+		}
 	}
 	
 	/*public void registerUser(RegistrationUser pDialog)

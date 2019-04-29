@@ -49,6 +49,7 @@ public class MainPanelOrganizationOptions extends JPanel implements ActionListen
 		
 		btnChosePet = new JButton("Buscar Mascota");
 		btnChosePet.setActionCommand(CHOSE_PET);
+		btnChosePet.addActionListener(this);
 		add(btnChosePet);
 		
 		btnInfoOrg = new JButton("Información de la Fundación");

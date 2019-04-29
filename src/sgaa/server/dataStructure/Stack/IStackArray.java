@@ -98,16 +98,6 @@ public class IStackArray<T> {
 		return count;
 	}
 	
-	public  void viewConsoleObjects()
-	{
-		IObjectStack<T> travel = head;
-		while(travel != null)
-		{
-			System.out.println(travel.getObject());
-			travel = travel.getNextObject();
-		}
-	}
-	
 	private IObjectStack<T> getTheLastObject()
 	{
 		IObjectStack<T> travel = head;

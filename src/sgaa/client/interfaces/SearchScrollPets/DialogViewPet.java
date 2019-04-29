@@ -30,6 +30,7 @@ public class DialogViewPet extends JDialog {
 		getContentPane().setBackground(Colors.COLOR_BLUE1);
 		setBounds(100, 100, 747, 511);
 		getContentPane().setLayout(null);
+		setAlwaysOnTop(true);
 		
 		JTextArea txtDescription = new JTextArea();
 		txtDescription.setLineWrap(true);

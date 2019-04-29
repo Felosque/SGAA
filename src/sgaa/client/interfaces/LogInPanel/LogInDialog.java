@@ -52,6 +52,7 @@ public class LogInDialog extends JDialog implements ActionListener, WindowListen
 		getContentPane().setBackground(Colors.SECONDARY_COLOR);
 		addWindowListener(this);
 		setLocationRelativeTo(pMainPanel);
+		setAlwaysOnTop(true);
 		
 		JLabel lblLoguearseEnSgaa = new JLabel("Loguearse en SGAA");
 		lblLoguearseEnSgaa.setBounds(116, 11, 200, 22);

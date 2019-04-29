@@ -73,6 +73,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		contentPanel.setBackground(Colors.COLOR_GREEN1);
+		setAlwaysOnTop(true);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 685, 44);
@@ -114,6 +115,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		tbxName = new JTextField();
 		tbxName.setEditable(false);
 		tbxName.setText("default");
+		tbxName.setDisabledTextColor(Colors.COLOR_GREENBLACK);
 		tbxName.setColumns(10);
 		tbxName.setBounds(416, 70, 242, 20);
 		contentPanel.add(tbxName);
@@ -129,6 +131,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		tbxColor.setEditable(false);
 		tbxColor.setText("default");
 		tbxColor.setColumns(10);
+		tbxColor.setDisabledTextColor(Colors.COLOR_GREENBLACK);
 		tbxColor.setBounds(416, 108, 242, 20);
 		contentPanel.add(tbxColor);
 		
@@ -143,6 +146,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		tbxAddress.setEditable(false);
 		tbxAddress.setText("default");
 		tbxAddress.setColumns(10);
+		tbxAddress.setDisabledTextColor(Colors.COLOR_GREENBLACK);
 		tbxAddress.setBounds(416, 146, 242, 20);
 		contentPanel.add(tbxAddress);
 		
@@ -161,11 +165,13 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		spMes = new JSpinner(monthModel);
 		spMes.setBounds(426, 177, 101, 22);
 		spMes.setEnabled(false);
+		spMes.setForeground(Colors.COLOR_GREENBLACK);
 		contentPanel.add(spMes);
 		
 		SpinnerModel day = new SpinnerNumberModel(1, 1, 31, 1);
 		spDia = new JSpinner(day);
 		spDia.setBounds(543, 178, 41, 20);
+		spDia.setForeground(Colors.COLOR_GREENBLACK);
 		spDia.setEnabled(false);
 		contentPanel.add(spDia);
 		
@@ -173,6 +179,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		spAno = new JSpinner(year);
 		spAno.setEnabled(false);
 		spAno.setBounds(596, 178, 66, 20);
+		spAno.setForeground(Colors.COLOR_GREENBLACK);
 		contentPanel.add(spAno);
 		
 		JLabel label_4 = new JLabel("Mes");
@@ -207,6 +214,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		cbSpecies = new JComboBox();
 		cbSpecies.setEnabled(false);
 		cbSpecies.setBounds(416, 232, 246, 24);
+		cbSpecies.setForeground(Colors.COLOR_GREENBLACK);
 		cbSpecies.addActionListener(this);
 		cbSpecies.setActionCommand("SPECIES");
 		for(int i = 0; i < species.size(); i++)
@@ -218,6 +226,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		tbxDescription = new JTextArea();
 		tbxDescription.setEnabled(false);
 		tbxDescription.setLineWrap(true);
+		tbxDescription.setDisabledTextColor(Colors.COLOR_GREENBLACK);
 		tbxDescription.setWrapStyleWord(true);
 		tbxDescription.setText("default");
 		tbxDescription.setBounds(416, 274, 237, 106);
@@ -250,6 +259,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 		cbAdoption = new JCheckBox("Está en adopción.");
 		cbAdoption.setBackground(Colors.COLOR_GREEN1);
 		cbAdoption.setBounds(416, 385, 242, 23);
+		cbAdoption.setEnabled(false);
 		
 		contentPanel.add(cbAdoption);
 		
@@ -298,6 +308,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 			spAno.setEnabled(true);
 			spDia.setEnabled(true);
 			spMes.setEnabled(true);
+			cbAdoption.setEnabled(true);
 		}else
 		{
 			tbxAddress.setEditable(false);
@@ -308,6 +319,7 @@ public class DialogPetOptions extends JDialog implements ActionListener{
 			spAno.setEnabled(false);
 			spDia.setEnabled(false);
 			spMes.setEnabled(false);
+			cbAdoption.setEnabled(false);
 		}
 	}
 	

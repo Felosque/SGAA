@@ -32,6 +32,7 @@ import javax.swing.border.EmptyBorder;
 
 import sgaa.client.estructures.GeneralController;
 import sgaa.client.estructures.ServicesStructures;
+import sgaa.client.exceptions.FormException;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
 import javax.swing.JSpinner;
@@ -59,6 +60,7 @@ public class RegistrationUser extends JDialog implements ActionListener, WindowL
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(pDialog.getMainPanel());
+		setAlwaysOnTop(true);
 		
 		registrationDialog = pDialog;
 		addWindowListener(this);
@@ -200,27 +202,35 @@ public class RegistrationUser extends JDialog implements ActionListener, WindowL
 		
 		if(e.getActionCommand().equals("REGISTRAR"))
 		{
-			//Fechas del registro
-			Calendar fechaActual = Calendar.getInstance();
-			Date dateR = new Date();
-			fechaActual.set((int)spAno.getValue() + 1, ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue()));
-			Date dateU = fechaActual.getTime();	
-			
-			//Resultado de la consulta al iniciar la seccion 
-			boolean result =  registrationDialog.getMainPanel().getMainWindows().getGeneralController().getUser()
-			.insert(tbxMail.getText(), ServicesStructures.viewPassword(tbxPassword.getPassword()), tbxName.getText(), tbxHouse.getText(), 
-					Long.parseLong(tbxPhone.getText()), dateU, dateR);
-			
-			if(result == true)
-			{
-				JOptionPane.showMessageDialog(this, "¡Se ha registrado correctamente el usuario, ya puede loguearse!");
-				registrationDialog.getMainPanel().mainWindowsVisible(true);
-				this.dispose();
-			}else
-			{
-				JOptionPane.showMessageDialog(this, "¡Hubo un error al registrar el usuario!\n Posiblemente ese correo ya este registrado en la base de datos.");
+			try {
+				if(tbxPhone.getText().equals("")) {tbxPhone.setText("2000001");}
+				ServicesStructures.viewFormUser(tbxName.getText(), tbxMail.getText(), ServicesStructures.viewPassword(tbxPassword.getPassword()), 
+						ServicesStructures.viewPassword(tbxPasswordR.getPassword()), Long.parseLong(tbxPhone.getText()), tbxHouse.getText(), (int)spAno.getValue() + 1);
+				//Fechas del registro
+				Calendar fechaActual = Calendar.getInstance();
+				Date dateR = new Date();
+				fechaActual.set((int)spAno.getValue() + 1, ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue()));
+				Date dateU = fechaActual.getTime();	
+				
+				//Resultado de la consulta al iniciar la seccion 
+				boolean result =  registrationDialog.getMainPanel().getMainWindows().getGeneralController().getUser()
+				.insert(tbxMail.getText(), ServicesStructures.viewPassword(tbxPassword.getPassword()), tbxName.getText(), tbxHouse.getText(), 
+						Long.parseLong(tbxPhone.getText()), dateU, dateR);
+				
+				if(result == true)
+				{
+					JOptionPane.showMessageDialog(this, "¡Se ha registrado correctamente el usuario, ya puede loguearse!");
+					registrationDialog.getMainPanel().mainWindowsVisible(true);
+					this.dispose();
+				}else
+				{
+					JOptionPane.showMessageDialog(this, "¡Hubo un error al registrar el usuario!\n Posiblemente ese correo ya este registrado en la base de datos.");
+				}
 			}
-			//this.dispose();
+			catch (FormException e2) {
+				JOptionPane.showMessageDialog(this, e2.getMessage());
+			}
+
 		}
 	}
 	
