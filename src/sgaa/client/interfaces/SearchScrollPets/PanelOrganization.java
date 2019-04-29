@@ -16,14 +16,17 @@ import javax.swing.JTextArea;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
 import sgaa.client.interfaces.MainWindows.MainWindows;
+import sgaa.server.dto.OrganizationDTO;
 
 public class PanelOrganization extends JPanel implements ActionListener{
 	
 	private JButton btnExit;
 	private MainWindows mainWindows;
+	private OrganizationDTO organizationDTO;
 	
-	public PanelOrganization(MainWindows pMainWindows) {
+	public PanelOrganization(MainWindows pMainWindows, OrganizationDTO pOrganizationDTO) {
 		mainWindows = pMainWindows;
+		organizationDTO = pOrganizationDTO;
 		setLayout(new GridLayout(3, 1));
 		setBackground(Colors.COLOR_WHITE_1);
 		
@@ -44,7 +47,9 @@ public class PanelOrganization extends JPanel implements ActionListener{
         namePanel.setBackground(Colors.COLOR_WHITE_1);
         
         namePanel.add(new JLabel(""));
-        JTextArea txtName = new JTextArea();
+        JTextArea txtName = new JTextArea(organizationDTO.getName());
+        txtName.setLineWrap(true);
+        txtName.setWrapStyleWord(true);
         txtName.setFont(Fonts.FONT_BODY_BLOD_1);
         txtName.setBackground(Colors.COLOR_WHITE_1);
         namePanel.add(txtName);

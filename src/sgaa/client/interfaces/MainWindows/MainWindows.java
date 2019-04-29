@@ -152,7 +152,7 @@ public class MainWindows extends JFrame {
 	{
 		mainPanelOrganizations.setVisible(false);
 		
-		panelOrganization = new PanelOrganization(this);
+		panelOrganization = new PanelOrganization(this, generalController.getOrganization().findById(pOrganization));
 		add(panelOrganization, BorderLayout.WEST);
 		panelOrganization.setVisible(true);
 		

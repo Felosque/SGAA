@@ -102,14 +102,17 @@ public class PanelViewPets extends JPanel implements ActionListener{
 				Page addPage = null;
 				if(p.getRows() - 1 < pets.size())
 				{
-					if(i%2 == 0)
+					if(pets.get(p.getRows() - 1).isState())
 					{
-						addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE2);
-					}else {
-						addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE1);
+						if(i%2 == 0)
+						{
+							addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE2);
+						}else {
+							addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE1);
+						}
+						addPanel(addPage);
+						scrollPanel.revalidate();
 					}
-					addPanel(addPage);
-					scrollPanel.revalidate();
 				}else
 				{
 					btnViewMore.setText("¡Ups! No hay más mascotas.");

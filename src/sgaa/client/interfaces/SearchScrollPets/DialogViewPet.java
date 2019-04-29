@@ -33,6 +33,7 @@ public class DialogViewPet extends JDialog {
 		
 		JTextArea txtDescription = new JTextArea();
 		txtDescription.setLineWrap(true);
+		txtDescription.setWrapStyleWord(true);
 		txtDescription.setText(pInfoPagePet.getDescription());
 		txtDescription.setBackground(Colors.COLOR_BLUE1);
 		txtDescription.setEditable(false);

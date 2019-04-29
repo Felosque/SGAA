@@ -203,8 +203,8 @@ public class PetDTO implements Crud
 
 	@Override
 	public String update() {
-		return "UPDATE public.pet SET id='"+id+"', name='"+name+"', color='"+color+"', address='"+address+"', birthdate='"+birthdate+"', state='"+state+"', breed='"+breed+"', mail='"+mail+"'," + 
-				"description='"+description+"'," +" img="+image+"" +	"WHERE id='"+id+"';";
+		return "UPDATE public.pet SET name='"+name+"', color='"+color+"', address='"+address+"', birthdate='"+birthdate+"', state="+state+", breed="+breed+", mail='"+mail+"'," + 
+				"description='"+description+"'," +" img="+image+"" +	" WHERE id="+id+";";
 	}
 
 	@Override

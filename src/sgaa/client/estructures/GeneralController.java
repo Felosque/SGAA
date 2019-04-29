@@ -68,37 +68,4 @@ public class GeneralController<T>
 	public void setUser(UserController<T> user) {
 		this.user = user;
 	}
-	
-	/*//TODO
-	public static void main(String[] args) 
-	{
-		GeneralController<GeneralController> obj = new GeneralController<GeneralController>();
-		
-		String mail = "losanadsojadsadssdaja@gmail.com";
-		long phone =  3183769455L;
-		Calendar fechaActual = Calendar.getInstance();
-		fechaActual.set(1999, 01-1, 8);
-		Date dateR = fechaActual.getTime();
-		System.out.println(dateR);
-		
-		boolean fe = false;
-		fe = obj.getUser().insert(mail, "123", "Felipe", "Calle 3*23", phone, dateR, dateR);
-		System.out.println(fe);
-		if(fe == true)
-		{
-			System.out.println("Se registro correctamente el usuario");
-		}else
-		{
-			System.out.println("¡Al parecer ya existe ese correo en nuestra base de datos o hay un error en la base de datos!");
-		}
-		
-		//System.out.println("¡Se registro el usuario correctamente en la base de datos!");
-		
-		
-		//System.out.println(obj.getUser().findById(mail).getName());
-		//System.out.println(obj.getUser().findById(mail).getPassword());
-		//System.out.println(obj.getOrganization().findById(mail).getName());
-		//System.out.println(obj.getOrganization().findById(mail).getName());
-		
-	}*/
 }
