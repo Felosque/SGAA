@@ -120,28 +120,6 @@ public class ServicesStructures {
 		}
 	}
 	
-	/*public void registerUser(RegistrationUser pDialog)
-	{
-		Calendar fechaActual = Calendar.getInstance();
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date dateR = new Date();
-		fechaActual.set((int)spAno.getValue(), ServicesStructures.getMonthNumber(spMes.getValue().toString()), ((int)spDia.getValue() + 1));
-		Date dateU = fechaActual.getTime();	
-		
-		//Resultado de la consulta al iniciar la seccion 
-		boolean result =  registrationDialog.getMainPanel().getMainWindows().getGeneralController().getUser()
-		.insert(tbxMail.getText(), ServicesStructures.viewPassword(tbxPassword.getPassword()), tbxName.getText(), tbxHouse.getText(), 
-				Long.parseLong(tbxPhone.getText()), dateU, dateR);
-		
-		if(result == true)
-		{
-			JOptionPane.showMessageDialog(pDialog, "¡Se ha registrado correctamente el usuario, ya puede loguearse!");
-			registrationDialog.getMainPanel().mainWindowsVisible(true);
-			this.dispose();
-		}else
-		{
-			JOptionPane.showMessageDialog(this, "¡Hubo un error al registrar el usuario!\n Posiblemente ese correo ya este registrado en la base de datos.");
-		}
-	}*/
+	
 	
 }

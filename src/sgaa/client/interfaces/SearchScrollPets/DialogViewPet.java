@@ -12,22 +12,38 @@ import javax.swing.border.EmptyBorder;
 import sgaa.client.estructures.InfoPagePet;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
+import sgaa.client.interfaces.MainWindows.MainWindows;
 import sgaa.server.dto.PetDTO;
 
 import java.awt.TextArea;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
-public class DialogViewPet extends JDialog {
+public class DialogViewPet extends JDialog implements ActionListener {
 
 	/**
 	 * Create the dialog.
 	 */
-	public DialogViewPet( PetDTO pInfoPagePet) {
-		getContentPane().setBackground(Colors.COLOR_BLUE1);
+	
+	private JButton btnExit, btnAdopt;
+	private PetDTO pet;
+	private MainWindows mainWindows;
+	
+	private final static String BTN_EXIT = "Exit";
+	private final static String BTN_ADOPT = "Adopt";
+	
+	public DialogViewPet( PetDTO pInfoPagePet, Color pColor, MainWindows pMainWindows) {
+		
+		mainWindows = pMainWindows;
+		pet = pInfoPagePet;
+		getContentPane().setBackground(pColor);
 		setBounds(100, 100, 747, 511);
 		getContentPane().setLayout(null);
 		setAlwaysOnTop(true);
@@ -36,63 +52,67 @@ public class DialogViewPet extends JDialog {
 		txtDescription.setLineWrap(true);
 		txtDescription.setWrapStyleWord(true);
 		txtDescription.setText(pInfoPagePet.getDescription());
-		txtDescription.setBackground(Colors.COLOR_BLUE1);
+		txtDescription.setBackground(pColor);
 		txtDescription.setEditable(false);
-		txtDescription.setBounds(484, 206, 166, 108);
+		txtDescription.setBounds(484, 206, 207, 130);
 		getContentPane().add(txtDescription);
 		
 		JLabel lblRaza = new JLabel("Raza: ");
 		lblRaza.setFont(Fonts.FONT_BODY_BLOD_1);
 		lblRaza.setForeground(Colors.COLOR_WHITE);
-		lblRaza.setBounds(303, 102, 133, 20);
+		lblRaza.setBounds(286, 102, 183, 20);
 		getContentPane().add(lblRaza);
 		
 		TextField txtRaza = new TextField();
-		txtRaza.setText( String.valueOf(pInfoPagePet.getBreed()));
+		txtRaza.setText( mainWindows.getGeneralController().getBreed().findById(pInfoPagePet.getBreed()).getBreed() );
 		txtRaza.setEditable(false);
-		txtRaza.setBounds(484, 102, 167, 20);
+		txtRaza.setBounds(484, 102, 207, 20);
 		getContentPane().add(txtRaza);
 		
 		JLabel lblColor = new JLabel("Color:");
 		lblColor.setHorizontalAlignment(SwingConstants.LEFT);
-		lblColor.setFont(Fonts.FONT_BODY_1);
-		lblColor.setBounds(303, 128, 133, 20);
+		lblColor.setFont(Fonts.FONT_BODY_BLOD_1);
+		lblColor.setForeground(Colors.COLOR_WHITE);
+		lblColor.setBounds(286, 128, 183, 20);
 		getContentPane().add(lblColor);
 		
 		TextField txtColor = new TextField();
 		txtColor.setText( pInfoPagePet.getColor());
 		txtColor.setEditable(false);
-		txtColor.setBounds(484, 128, 167, 20);
+		txtColor.setBounds(484, 128, 207, 20);
 		getContentPane().add(txtColor);
 		
 		JLabel lblLugarDeAdquisicin = new JLabel("Lugar de adquisici\u00F3n:");
 		lblLugarDeAdquisicin.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLugarDeAdquisicin.setFont(Fonts.FONT_BODY_1);
-		lblLugarDeAdquisicin.setBounds(303, 154, 154, 20);
+		lblLugarDeAdquisicin.setFont(Fonts.FONT_BODY_BLOD_1);
+		lblLugarDeAdquisicin.setForeground(Colors.COLOR_WHITE);
+		lblLugarDeAdquisicin.setBounds(286, 154, 183, 20);
 		getContentPane().add(lblLugarDeAdquisicin);
 		
 		TextField txtPlace = new TextField();
-		txtPlace.setText( pInfoPagePet.getAddress());
+		txtPlace.setText( pInfoPagePet.getAddress() );
 		txtPlace.setEditable(false);
-		txtPlace.setBounds(484, 154, 167, 20);
+		txtPlace.setBounds(484, 154, 207, 20);
 		getContentPane().add(txtPlace);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");
 		lblDescripcin.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDescripcin.setFont(Fonts.FONT_BODY_1);
-		lblDescripcin.setBounds(303, 207, 133, 20);
+		lblDescripcin.setFont(Fonts.FONT_BODY_BLOD_1);
+		lblDescripcin.setForeground(Colors.COLOR_WHITE);
+		lblDescripcin.setBounds(286, 207, 180, 20);
 		getContentPane().add(lblDescripcin);
 		
 		JLabel lblFechaNacimiento = new JLabel("Fecha nacimiento:");
 		lblFechaNacimiento.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFechaNacimiento.setFont(Fonts.FONT_BODY_1);
-		lblFechaNacimiento.setBounds(303, 180, 133, 20);
+		lblFechaNacimiento.setFont(Fonts.FONT_BODY_BLOD_1);
+		lblFechaNacimiento.setForeground(Colors.COLOR_WHITE);
+		lblFechaNacimiento.setBounds(286, 180, 183, 20);
 		getContentPane().add(lblFechaNacimiento);
 		
 		TextField txtDateBirday = new TextField();
-		txtPlace.setText( "22/231/312" );
+		txtDateBirday.setText( pInfoPagePet.getBirthdate().toString() );
 		txtDateBirday.setEditable(false);
-		txtDateBirday.setBounds(484, 180, 167, 20);
+		txtDateBirday.setBounds(484, 180, 207, 20);
 		getContentPane().add(txtDateBirday);
 		
 		JLabel lblImg = new JLabel("IMG");
@@ -102,17 +122,51 @@ public class DialogViewPet extends JDialog {
 		getContentPane().add(lblImg);
 		
 		JLabel lblDescripcinDeLa = new JLabel("DESCRIPCI\u00D3N DE LA MASCOTA");
+		lblDescripcinDeLa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDescripcinDeLa.setFont(Fonts.FONT_TITLE_1);
 		lblDescripcinDeLa.setForeground(Colors.COLOR_WHITE);
-		lblDescripcinDeLa.setBounds(125, 11, 482, 37);
+		lblDescripcinDeLa.setBounds(0, 11, 764, 37);
 		getContentPane().add(lblDescripcinDeLa);
 		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(168, 401, 166, 36);
-		getContentPane().add(btnSalir);
+		btnExit = new JButton("Salir");
+		btnExit.setActionCommand(BTN_EXIT);
+		btnExit.addActionListener(this);
+		btnExit.setBounds(168, 401, 166, 36);
+		getContentPane().add(btnExit);
 		
-		JButton btnAdoptar = new JButton("Adoptar");
-		btnAdoptar.setBounds(388, 401, 166, 36);
-		getContentPane().add(btnAdoptar);
+		btnAdopt = new JButton("Adoptar");
+		btnAdopt.setActionCommand(BTN_ADOPT);
+		btnAdopt.addActionListener(this);
+		btnAdopt.setBounds(388, 401, 166, 36);
+		getContentPane().add(btnAdopt);
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
+		
+		if(command.equals(BTN_EXIT))
+		{
+			this.dispose();
+		}
+		else if(command.equals(BTN_ADOPT))
+		{
+			Date fecha = new Date();
+			mainWindows.getGeneralController().getAdoption().insert(mainWindows.getUserSession().getMail(),
+																	pet.getId(), fecha);
+			
+			mainWindows.getGeneralController().getPet().update(pet.getId(),
+					pet.getName(), pet.getColor(), pet.getAddress(), pet.getBirthdate(), false, 
+					pet.getBreed(), pet.getMail(), pet.getPathImage(), pet.getDescription());
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

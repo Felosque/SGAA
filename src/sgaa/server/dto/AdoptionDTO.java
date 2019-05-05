@@ -1,6 +1,6 @@
 package sgaa.server.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 import sgaa.server.interfaces.Crud;
 
@@ -73,7 +73,7 @@ public class AdoptionDTO implements Crud{
 	@Override
 	public String insert() {
 		// TODO Auto-generated method stub
-		return "INSERT INTO public.adoption_tab(id, mail, id_pet, transaction_date) VALUES ('"+id+"', '"+mail+"', '"+idPet+"', '"+transactionDate+"');";
+		return "INSERT INTO public.adoption_tab(mail, id_pet, transaction_date) VALUES ('"+mail+"', '"+idPet+"', '"+transactionDate+"');";
 	}
 	@Override
 	public String update() {
@@ -93,7 +93,7 @@ public class AdoptionDTO implements Crud{
 	@Override
 	public String findAll() {
 		// TODO Auto-generated method stub
-		return "SELECT id, mail, id_pet, transaction_date FROM public.adoption_tab;";
+		return "SELECT id, mail, id_pet, transaction_date FROM public.adoption_tab WHERE mail= '"+ mail +"';";
 	}
 
 }

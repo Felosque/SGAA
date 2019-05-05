@@ -158,7 +158,7 @@ public class MainWindows extends JFrame {
 		
 		IStackArray<PetDTO> pets = new IStackArray<PetDTO>();
 		pets = generalController.getPet().findAll(pOrganization);
-		mainPanelPets = new PanelViewPets(pets);
+		mainPanelPets = new PanelViewPets(pets, this);
 		add(mainPanelPets, BorderLayout.CENTER);
 	}
 	

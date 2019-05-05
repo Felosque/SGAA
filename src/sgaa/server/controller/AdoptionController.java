@@ -1,6 +1,6 @@
 package sgaa.server.controller;
 
-import java.sql.Date;
+import java.util.Date;
 
 import sgaa.server.dao.AdoptionDAO;
 import sgaa.server.dataStructure.Stack.IStackArray;
@@ -16,9 +16,9 @@ public class AdoptionController<T> {
 		dao = new AdoptionDAO<T>();
 	}
 	
-	public boolean insert(int id, String mail, int idPet, Date transactionDate)
+	public boolean insert(String mail, int idPet, Date transactionDate)
 	{
-		AdoptionDTO dato = new AdoptionDTO(id, mail, idPet, transactionDate);
+		AdoptionDTO dato = new AdoptionDTO(-1,  mail, idPet, transactionDate);
 		return dao.insert(dato);
 	}
 
@@ -42,9 +42,10 @@ public class AdoptionController<T> {
 		return (AdoptionDTO) dao.findById(dato);
 	}
 
-	public IStackArray<AdoptionDTO>findAll()
+	public IStackArray<AdoptionDTO>findAll(String mail)
 	{
 		AdoptionDTO dato = new AdoptionDTO();
+		dato.setMail(mail);
 		return dao.findAll(dato);
 	}
 	

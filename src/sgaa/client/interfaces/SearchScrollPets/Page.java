@@ -22,10 +22,14 @@ public class Page extends JPanel implements ActionListener
 {
     private JButton btnViewMore;
     private PetDTO infoPagePet;
+    private PanelViewPets panelViewPets;
+    private Color color;
 	
-    public Page(PetDTO pInfoPagePet, Color pColor){
+    public Page(PetDTO pInfoPagePet, Color pColor, PanelViewPets pPanelViewPets){
     		
+    	panelViewPets = pPanelViewPets;
     	infoPagePet = pInfoPagePet;
+    	color = pColor;
         setPreferredSize(new Dimension(300, 300));
         setLayout(new GridLayout(1, 1));
         
@@ -83,7 +87,7 @@ public class Page extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		if(command.equals("VIEW")) {
-			DialogViewPet dialogViewPet = new DialogViewPet(infoPagePet);
+			DialogViewPet dialogViewPet = new DialogViewPet(infoPagePet, color, panelViewPets.getMainWindows());
 			dialogViewPet.setVisible(true);
 		}
 	}

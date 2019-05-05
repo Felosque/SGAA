@@ -12,7 +12,9 @@ import javax.swing.JScrollPane;
 
 import sgaa.client.estructures.InfoPagePet;
 import sgaa.client.interfaces.Constains.Colors;
+import sgaa.client.interfaces.Constains.Fonts;
 import sgaa.client.interfaces.MainWindows.MainWindows;
+import sgaa.client.interfaces.SearchScrollPets.Page;
 import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.OrganizationDTO;
 import sgaa.server.dto.PetDTO;
@@ -34,8 +36,21 @@ public class PanelViewOrganizations extends JPanel implements ActionListener{
         p = new GridLayout(1, 1);
         initComponents();
         
-        PageO pe = new PageO(pInfoPageOrganizations.get(0), this, Colors.COLOR_GREEN1);
-        addPanel(pe);
+        
+        if(pInfoPageOrganizations.size() > 0)
+        {
+    		PageO pe = new PageO(pInfoPageOrganizations.get(0), this, Colors.COLOR_GREEN1);
+            addPanel(pe);
+        }else
+        {
+        	setBackground(Colors.SECONDARY_COLOR);
+        	JLabel info = new JLabel("UPS, LA FUNDACIÓN NO TIENE MASCOTAS EN ADOPCIÓN...");
+        	info.setFont(Fonts.FONT_BODY_BLOD_1);
+        	info.setForeground(Colors.COLOR_GREENBLACK);
+        	info.setHorizontalAlignment(JLabel.CENTER);
+        	add(info);
+        }
+        
     }
 
     private void initComponents(){

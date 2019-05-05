@@ -13,19 +13,23 @@ import javax.swing.JScrollPane;
 import sgaa.client.estructures.InfoPagePet;
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
+import sgaa.client.interfaces.MainWindows.MainWindows;
 import sgaa.server.dataStructure.Stack.IStackArray;
 import sgaa.server.dto.PetDTO;
 
 public class PanelViewPets extends JPanel implements ActionListener{
 
     private JScrollPane scrollPane;
+    private MainWindows mainWindows;
     private JPanel scrollPanel, btnPanelVisual;
     private GridLayout p;
     private JButton btnAddPage;
     private JButton btnViewMore;
     private IStackArray<PetDTO> pets;
 
-    public PanelViewPets(IStackArray<PetDTO> pInfoPagePets){
+    public PanelViewPets(IStackArray<PetDTO> pInfoPagePets, MainWindows pMainWindows){
+    	
+    	mainWindows = pMainWindows;
     	pets = pInfoPagePets;
         setPreferredSize(new Dimension(1000, 100));
         setLayout(new BorderLayout());
@@ -33,8 +37,15 @@ public class PanelViewPets extends JPanel implements ActionListener{
         initComponents();
         if(pInfoPagePets.size() > 0)
         {
-	        Page pe = new Page(pets.get(0), Colors.COLOR_BLUE1);
-	        addPanel(pe);
+        	for(int i = 0; i < pInfoPagePets.size(); i++)
+        	{
+	        	if(pInfoPagePets.get(i).isState())
+	        	{
+			        Page pe = new Page(pets.get(0), Colors.COLOR_BLUE1, this);
+			        addPanel(pe);
+			        break;
+	        	}
+        	}
         }else
         {
         	setBackground(Colors.SECONDARY_COLOR);
@@ -86,6 +97,11 @@ public class PanelViewPets extends JPanel implements ActionListener{
 		scrollPanel.revalidate();
     }
 
+    public MainWindows getMainWindows()
+    {
+    	return mainWindows;
+    }
+    
     public void addPanel(JPanel pnl){
     	this.p.setRows(p.getRows() + 1);
         scrollPanel.add(pnl);
@@ -106,9 +122,9 @@ public class PanelViewPets extends JPanel implements ActionListener{
 					{
 						if(i%2 == 0)
 						{
-							addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE2);
+							addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE2, this);
 						}else {
-							addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE1);
+							addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE1, this);
 						}
 						addPanel(addPage);
 						scrollPanel.revalidate();

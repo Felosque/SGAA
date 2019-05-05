@@ -184,6 +184,8 @@ public class DialogAddPet extends JDialog implements ActionListener{
 			
 			tbxDescription = new JTextArea();
 			tbxDescription.setBounds(208, 282, 246, 81);
+			tbxDescription.setLineWrap(true);
+			tbxDescription.setWrapStyleWord(true);
 			panel.add(tbxDescription);
 			
 			JLabel lblRazaYEspecie = new JLabel("Raza y especie:");
@@ -247,7 +249,8 @@ public class DialogAddPet extends JDialog implements ActionListener{
 			File img = file.getSelectedFile();
 			System.out.println(img.getPath());
 			refrescarImagen(img);
-		}else if(e.getActionCommand().equals("ANADIR"))
+		}
+		else if(e.getActionCommand().equals("ANADIR"))
 		{
 			//Fecha de nacimiento
 			try

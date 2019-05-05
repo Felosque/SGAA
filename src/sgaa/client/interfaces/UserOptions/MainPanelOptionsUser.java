@@ -117,6 +117,8 @@ public class MainPanelOptionsUser extends JPanel implements ActionListener{
 		
 		if(command.equals(MY_PETS))
 		{
+			DialogMyPets dialog = new DialogMyPets(mainWindows);
+			dialog.setVisible(true);
 			
 		}else if(command.equals(CONFIG))
 		{
