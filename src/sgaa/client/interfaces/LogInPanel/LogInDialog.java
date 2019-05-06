@@ -128,14 +128,20 @@ public class LogInDialog extends JDialog implements ActionListener, WindowListen
 			{
 				OrganizationDTO orgDto = logInOption.getMainPanel().getMainWindows().getGeneralController().getOrganization()
 										.findById(tbxCorreo.getText());
-				if(ServicesStructures.comparePassword(orgDto.getPassword(), ServicesStructures.viewPassword(tbxContrasena.getPassword()))) {
-					OrganizationSession session = new OrganizationSession(orgDto);
-					logInOption.getMainPanel().getMainWindows().activateSessionOrganization(session);
-					logInOption.getMainPanel().mainWindowsVisible(true);
-					this.dispose();
+				if(orgDto != null)
+				{
+					if(ServicesStructures.comparePassword(orgDto.getPassword(), ServicesStructures.viewPassword(tbxContrasena.getPassword()))) {
+						OrganizationSession session = new OrganizationSession(orgDto);
+						logInOption.getMainPanel().getMainWindows().activateSessionOrganization(session);
+						logInOption.getMainPanel().mainWindowsVisible(true);
+						this.dispose();
+					}else
+					{
+						JOptionPane.showMessageDialog(this, "Usuario o contraseña no encontrado en la base de datos.");
+					}
 				}else
 				{
-					JOptionPane.showMessageDialog(this, "Usuario o contraseña no encontrado en la base de datos.");
+					JOptionPane.showMessageDialog(this, "Ese correo no existe en nuestra base de datos. \n¡Puedes registrarlo ahora mismo!");
 				}
 			}
 			

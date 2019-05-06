@@ -89,7 +89,8 @@ public class MainPanelOrganizationOptions extends JPanel implements ActionListen
 			search.setVisible(true);
 		}else if(command.equals(INFO_ORG))
 		{
-			
+			DialogInfoOrg dialogInfoOrg = new DialogInfoOrg(mainWindows);
+			dialogInfoOrg.setVisible(true);
 		}else if(command.equals(CONFIG))
 		{
 			int dialogResult = JOptionPane.showConfirmDialog(mainWindows, "¿Seguro que quieres cerrar sesión?");
