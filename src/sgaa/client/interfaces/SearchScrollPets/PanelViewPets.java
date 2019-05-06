@@ -22,7 +22,7 @@ public class PanelViewPets extends JPanel implements ActionListener{
     private JScrollPane scrollPane;
     private MainWindows mainWindows;
     private JPanel scrollPanel, btnPanelVisual;
-    private GridLayout p;
+    private GridLayout grindLayout;
     private JButton btnAddPage;
     private JButton btnViewMore;
     private IStackArray<PetDTO> pets;
@@ -33,8 +33,10 @@ public class PanelViewPets extends JPanel implements ActionListener{
     	pets = pInfoPagePets;
         setPreferredSize(new Dimension(1000, 100));
         setLayout(new BorderLayout());
-        p = new GridLayout(1, 1);
+        grindLayout = new GridLayout(1, 1);
         initComponents();
+        int num = grindLayout.getRows();
+        int num2 = grindLayout.getRows();
         if(pInfoPagePets.size() > 0)
         {
         	for(int i = 0; i < pInfoPagePets.size(); i++)
@@ -43,13 +45,14 @@ public class PanelViewPets extends JPanel implements ActionListener{
 	        	{
 			        Page pe = new Page(pets.get(0), Colors.COLOR_BLUE1, this);
 			        addPanel(pe);
+			        num2++;
 			        break;
 	        	}
         	}
-        }else
-        {
+        }
+        if(num == num2) {
         	setBackground(Colors.SECONDARY_COLOR);
-        	JLabel info = new JLabel("UPS, LA FUNDACIÓN NO TIENE MASCOTAS EN ADOPCIÓN...");
+        	JLabel info = new JLabel("UPS, NO HAY MASCOTAS EN ADOPCIÓN...");
         	info.setFont(Fonts.FONT_BODY_BLOD_1);
         	info.setForeground(Colors.COLOR_GREENBLACK);
         	info.setHorizontalAlignment(JLabel.CENTER);
@@ -59,7 +62,7 @@ public class PanelViewPets extends JPanel implements ActionListener{
 
     private void initComponents(){
         scrollPanel = new JPanel();
-        scrollPanel.setLayout(p);
+        scrollPanel.setLayout(grindLayout);
         scrollPanel.setSize(new Dimension(500, 100));
           
         scrollPane = new JScrollPane(scrollPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -103,7 +106,7 @@ public class PanelViewPets extends JPanel implements ActionListener{
     }
     
     public void addPanel(JPanel pnl){
-    	this.p.setRows(p.getRows() + 1);
+    	this.grindLayout.setRows(grindLayout.getRows() + 1);
         scrollPanel.add(pnl);
         scrollPanel.remove(btnPanelVisual);
         scrollPanel.add(btnPanelVisual);
@@ -114,27 +117,33 @@ public class PanelViewPets extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equals("Poner")) {
+			//Numeros para ver si se inserto algun animal a la lista
+			int num = grindLayout.getRows();
+			int num2 = grindLayout.getRows();
+			//Insertamos 5 animales solo si estos están en adopción
 			for(int i = 0; i < 4; i++) {
 				Page addPage = null;
-				if(p.getRows() - 1 < pets.size())
+				if(grindLayout.getRows() - 1 < pets.size())
 				{
-					if(pets.get(p.getRows() - 1).isState())
+					if(pets.get(grindLayout.getRows() - 1).isState())
 					{
 						if(i%2 == 0)
 						{
-							addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE2, this);
+							addPage = new Page(pets.get(grindLayout.getRows() - 1), Colors.COLOR_BLUE2, this);
 						}else {
-							addPage = new Page(pets.get(p.getRows() - 1), Colors.COLOR_BLUE1, this);
+							addPage = new Page(pets.get(grindLayout.getRows() - 1), Colors.COLOR_BLUE1, this);
 						}
+						num2 ++;
 						addPanel(addPage);
 						scrollPanel.revalidate();
 					}
-				}else
-				{
-					btnViewMore.setText("¡Ups! No hay más mascotas.");
-					btnViewMore.setEnabled(false);
-					break;
 				}
+			}
+			//Verificamos que se haya insertado algun animal, si los numeros son iguales, no se inserto.
+			if(num2 == num)
+			{
+				btnViewMore.setText("¡Ups! No hay más mascotas.");
+				btnViewMore.setEnabled(false);
 			}
 		}
 		

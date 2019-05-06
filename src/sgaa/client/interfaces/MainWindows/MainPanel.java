@@ -3,18 +3,14 @@ package sgaa.client.interfaces.MainWindows;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import sgaa.client.interfaces.Constains.Colors;
 import sgaa.client.interfaces.Constains.Fonts;
-import sgaa.client.interfaces.LogInPanel.LogInDialog;
 import sgaa.client.interfaces.LogInPanel.LogInOption;
 import sgaa.client.interfaces.RegistrationPanel.RegistrationDialog;
-import sgaa.client.interfaces.SearchScrollPets.DialogViewPet;
 
 public class MainPanel extends JPanel implements ActionListener{
 
@@ -111,7 +107,7 @@ public class MainPanel extends JPanel implements ActionListener{
 					"\t© Sistema de Gestion de Animales en Adopción (SGAA - 2019) © \n\n"
 					+"- Ezequiel Melo Bustos                          \tCodigo:\t (2220171073)\n"
 					+"- Luis Felipe Londoño Medina               \tCodigo:\t (2220171044)\n"
-					+"- Richard Javier Zamora Herrera            \tCodigo:\t (2220171018)\n");
+					+"- Richard Javier Zamora Herrera            \tCodigo:\t (2220171018)\n", "CREDITOS", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 	}

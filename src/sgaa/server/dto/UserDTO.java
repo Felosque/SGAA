@@ -159,4 +159,11 @@ public class UserDTO implements Crud{
 		return "SELECT mail, password, name, address, phone_number, birthdate, registration_date from public.user;";
 	}
 
+
+	@Override
+	public String findByAttribute() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

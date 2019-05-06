@@ -224,4 +224,10 @@ public class PetDTO implements Crud
 		// TODO Auto-generated method stub
 		return "SELECT id, name, color, address, birthdate, state, breed, mail, description, img FROM public.pet WHERE mail='"+mail+"';";
 	}
+
+	@Override
+	public String findByAttribute() {
+		// TODO Auto-generated method stub
+		return "SELECT id, name, color, address, birthdate, state, breed, mail, description, img FROM public.pet WHERE breed='"+breed+"';";
+	}
 }

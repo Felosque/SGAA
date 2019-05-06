@@ -17,6 +17,8 @@ import sgaa.server.dto.PetDTO;
 
 import java.awt.TextArea;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -151,13 +153,28 @@ public class DialogViewPet extends JDialog implements ActionListener {
 		}
 		else if(command.equals(BTN_ADOPT))
 		{
+			
 			Date fecha = new Date();
-			mainWindows.getGeneralController().getAdoption().insert(mainWindows.getUserSession().getMail(),
+			boolean status = mainWindows.getGeneralController().getAdoption().insert(mainWindows.getUserSession().getMail(),
 																	pet.getId(), fecha);
 			
-			mainWindows.getGeneralController().getPet().update(pet.getId(),
+			boolean status2 = mainWindows.getGeneralController().getPet().update(pet.getId(),
 					pet.getName(), pet.getColor(), pet.getAddress(), pet.getBirthdate(), false, 
 					pet.getBreed(), pet.getMail(), pet.getPathImage(), pet.getDescription());
+			
+			if(status == true && status2 == true)
+			{
+				JOptionPane.showMessageDialog(this, "¡Adoptaste la mascota!\n"
+						+ "Felicitaciones, has adoptado una mascota, ahora tienes que ir al punto de encuentro\n"
+						+ "para poder recibir a el nuevo miembro de la familia.\n\n"
+						+ "Nota: Recuerda exigir a tu fundación que acepte la adopción en la plataforma cuando recogas la mascota.", "¡Adopción realizada!", JOptionPane.INFORMATION_MESSAGE);
+				mainWindows.closeOrganizationPage();
+				this.dispose();
+			}else
+			{
+				JOptionPane.showMessageDialog(this, "¡Hay un error al intentar adoptar la mascota!\n"
+						+ "Al parecer es tan linda, que ya la adoptaron. ¡Puedes seguir buscando!");
+			}
 		}
 		
 	}

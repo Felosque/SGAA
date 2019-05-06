@@ -32,7 +32,7 @@ public class PanelOrganization extends JPanel implements ActionListener{
 		
 		//Content of image
         JPanel imagePanel = new JPanel();
-        Image img = new ImageIcon("img/fun1.jpg").getImage();
+        Image img = new ImageIcon("img/org.png").getImage();
         ImageIcon img2=new ImageIcon(img.getScaledInstance(190, 190, Image.SCALE_SMOOTH));
         JLabel picture = new JLabel();
         picture.setIcon(img2);

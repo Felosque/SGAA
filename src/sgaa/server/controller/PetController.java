@@ -41,6 +41,13 @@ public class PetController<T>
 		return (PetDTO) dao.findById(dato);
 	}
 	
+	public IStackArray<PetDTO> findByAttribute(int pBreed) 
+	{
+		PetDTO dato = new PetDTO();
+		dato.setBreed(pBreed);
+		return dao.findByAttribute(dato);
+	}
+	
 	public IStackArray<PetDTO>findAll(String mail)
 	{
 		PetDTO dato = new PetDTO(0, null, null, null, new java.util.Date(), false, 0, mail, null, null);

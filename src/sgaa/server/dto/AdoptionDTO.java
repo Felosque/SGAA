@@ -96,4 +96,11 @@ public class AdoptionDTO implements Crud{
 		return "SELECT id, mail, id_pet, transaction_date FROM public.adoption_tab WHERE mail= '"+ mail +"';";
 	}
 
+
+	@Override
+	public String findByAttribute() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

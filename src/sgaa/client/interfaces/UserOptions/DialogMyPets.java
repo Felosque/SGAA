@@ -15,6 +15,7 @@ public class DialogMyPets extends JDialog {
 	 	
 	public DialogMyPets(MainWindows pMainWindows) {
 		
+		setAlwaysOnTop(true);
 		PanelPetListUser panelPetListUser = new PanelPetListUser(pMainWindows);
 		add(panelPetListUser);
 		setBounds(0, 0, 700, 600);

@@ -23,7 +23,7 @@ public class MainPanelOptionsUser extends JPanel implements ActionListener{
 	private static final String CONFIG = "Config";
 	private static final String CHOOSE_PETS = "ChosePets";
 	private static final String CLOSE_SESSION = "CloseSession";
-	private static final String OPT_1 = "Opt1";
+	private static final String VIEW_ORG = "View Org";
 	private static final String OPT_2 = "Opt2";
 	
 	public MainPanelOptionsUser(MainWindows pMainWindows) {
@@ -97,8 +97,8 @@ public class MainPanelOptionsUser extends JPanel implements ActionListener{
 		btnCloseSession.addActionListener(this);
 		panelWest.add(btnCloseSession);
 		
-		btnOpt1 = new JButton("Opción 1");
-		btnOpt1.setActionCommand(OPT_1);
+		btnOpt1 = new JButton("Ver Fundaciones");
+		btnOpt1.setActionCommand(VIEW_ORG);
 		btnOpt1.addActionListener(this);
 		panelWest.add(btnOpt1);
 		
@@ -122,9 +122,12 @@ public class MainPanelOptionsUser extends JPanel implements ActionListener{
 			
 		}else if(command.equals(CONFIG))
 		{
+			JOptionPane.showMessageDialog(mainWindows, "¡Pronto vas a poder configurar tu cuenta!\n Estamos trabajando en ello.");
 			
 		}else if(command.equals(CHOOSE_PETS))
 		{
+			DialogSearchPets dialog = new DialogSearchPets(mainWindows);
+			dialog.setVisible(true);
 			
 		}else if(command.equals(CLOSE_SESSION))
 		{
@@ -133,9 +136,9 @@ public class MainPanelOptionsUser extends JPanel implements ActionListener{
 			{
 				mainWindows.closeSessionUser();
 			}	
-		}else if(command.equals(OPT_1))
+		}else if(command.equals(VIEW_ORG))
 		{
-			
+			mainWindows.openOrganizationsList();
 		}else if(command.equals(OPT_2))
 		{
 			

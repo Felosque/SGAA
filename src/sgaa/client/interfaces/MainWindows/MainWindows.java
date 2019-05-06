@@ -128,7 +128,9 @@ public class MainWindows extends JFrame {
 		{
 			panelOrganization.setVisible(false);
 			panelOrganization = null;
-			
+		}
+		if(mainPanelPets != null)
+		{
 			mainPanelPets.setVisible(false);
 			mainPanelPets = null;
 		}
@@ -148,6 +150,47 @@ public class MainWindows extends JFrame {
 		mainPanel.setVisible(true);
 	}
 	
+	public void openOrganizationsList()
+	{
+		if(panelOrganization != null)
+		{
+			panelOrganization.setVisible(false);
+			panelOrganization = null;
+			mainPanelPets.setVisible(false);
+			mainPanelPets = null;
+		}
+		if(mainPanelPets != null)
+		{
+			mainPanelPets.setVisible(false);
+			mainPanelPets = null;
+		}
+		mainPanelOrganizations.setVisible(true);
+	}
+	
+	public void openSearchPets(int pBreed)
+	{
+		mainPanelOrganizations.setVisible(false);
+		//Cierro posibles ventanas abiertas por el usuario
+		if(panelOrganization != null)
+		{
+			panelOrganization.setVisible(false);
+			panelOrganization = null;
+			mainPanelPets.setVisible(false);
+			mainPanelPets = null;
+		}
+		if(mainPanelPets != null)
+		{
+			mainPanelPets.setVisible(false);
+			mainPanelPets = null;
+		}
+		
+		//Creo el panel con las mascotas buscadas
+		IStackArray<PetDTO> pets = new IStackArray<PetDTO>();
+		pets = generalController.getPet().findByAttribute(pBreed);
+		mainPanelPets = new PanelViewPets(pets, this);
+		add(mainPanelPets, BorderLayout.CENTER);
+	}
+	
 	public void openOrganizationPage(String pOrganization)
 	{
 		mainPanelOrganizations.setVisible(false);
@@ -164,10 +207,16 @@ public class MainWindows extends JFrame {
 	
 	public void closeOrganizationPage()
 	{
-		panelOrganization.setVisible(false);
-		panelOrganization = null;
-		mainPanelPets.setVisible(false);
-		mainPanelPets = null;
+		if(panelOrganization != null)
+		{
+			panelOrganization.setVisible(false);
+			panelOrganization = null;
+		}
+		if(mainPanelPets != null)
+		{
+			mainPanelPets.setVisible(false);
+			mainPanelPets = null;
+		}
 		mainPanelOrganizations.setVisible(true);
 	}
 	

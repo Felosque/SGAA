@@ -8,6 +8,8 @@ public interface Crud {
 	
 	public String delete();
 	
+	public String findByAttribute();
+	
 	public String findById();
 	
 	public String findAll();

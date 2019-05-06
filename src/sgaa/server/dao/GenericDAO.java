@@ -75,6 +75,13 @@ public class GenericDAO<T>
 
 		return (Crud) newObjet;
 	}
+	
+	public IStackArray<T> findByAttribute(Crud dato)
+	{
+		ResultSet rs = con.getQuery(dato.findByAttribute());
+		IStackArray<T> list = getQueryList(rs);
+		return list;
+	}
 
 	public IStackArray<T> findAll(Crud dato) 
 	{
