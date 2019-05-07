@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Colors {
 
-	public static final Color PRIMARY_COLOR = new Color(51, 102, 51);
+	public static final Color PRIMARY_COLOR = new Color(225, 255, 0);
 	public static final Color SECONDARY_COLOR = new Color(100, 184, 50);
 	public static final Color COLOR_WHITE = new Color(255, 255, 255);
 	public static final Color COLOR_WHITE_1 = new Color(217, 206, 178);
@@ -13,6 +13,6 @@ public class Colors {
 	
 	public static final Color COLOR_GREEN1 = new Color(199, 244, 194);
 	public static final Color COLOR_GREEN2 = new Color(161, 238, 152);
-	public static final Color COLOR_GREENBLACK = new Color(22, 34, 20);
+	public static final Color COLOR_GREENBLACK = new Color(22, 30, 20);
 	
 }
