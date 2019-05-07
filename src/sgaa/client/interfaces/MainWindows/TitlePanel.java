@@ -17,7 +17,7 @@ public class TitlePanel extends JPanel {
 		title.setHorizontalTextPosition(JLabel.CENTER);
 		title.setVerticalTextPosition(JLabel.CENTER);
 		add(title);
-		
+		 
 	}
 
 }
