@@ -40,7 +40,7 @@ public class DialogInfoOrg extends JDialog implements ActionListener{
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		contentPanel.setBackground(Colors.COLOR_GREEN2);
+		contentPanel.setBackground(Colors.COLOR_BLUE1);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 450, 38);

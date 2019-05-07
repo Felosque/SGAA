@@ -9,7 +9,7 @@ public class TitlePanel extends JPanel {
 
 	public TitlePanel() {
 		
-		setBackground(Colors.PRIMARY_COLOR);
+		setBackground(Colors.COLOR_BLUE1);
 		
 		JLabel title = new JLabel("SGAA");
 		title.setForeground(Colors.COLOR_WHITE);
